@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Calgorithm</class>
+ <widget class="QDialog" name="Calgorithm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>730</width>
+    <height>380</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Calgorithm</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>681</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>180</y>
+     <width>271</width>
+     <height>91</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>180</y>
+     <width>239</width>
+     <height>161</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="text">
+       <string>保存显示</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>初始化</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="text">
+       <string>批量检测</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="text">
+       <string>保存结果</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QPushButton" name="pushButton_5">
+      <property name="text">
+       <string>保存退出</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QPushButton" name="pushButton_6">
+      <property name="text">
+       <string>读取图片</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>180</y>
+     <width>181</width>
+     <height>161</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <widget class="QRadioButton" name="radioButton">
+      <property name="text">
+       <string>黑色</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QRadioButton" name="radioButton_2">
+      <property name="text">
+       <string>白色</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="pushButton_7">
+      <property name="text">
+       <string>算法</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>  值 ：</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="2">
+     <widget class="QSlider" name="horizontalSlider">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QTableView" name="tableView">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>270</y>
+     <width>271</width>
+     <height>81</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>Calgorithm</receiver>
+   <slot>returnmain()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>562</x>
+     <y>302</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>472</x>
+     <y>316</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_7</sender>
+   <signal>clicked()</signal>
+   <receiver>Calgorithm</receiver>
+   <slot>suanfa()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>412</x>
+     <y>316</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>318</x>
+     <y>327</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Calgorithm</receiver>
+   <slot>sinitial()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>481</x>
+     <y>238</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>401</x>
+     <y>187</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>Calgorithm</receiver>
+   <slot>sdetect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>562</x>
+     <y>238</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>466</x>
+     <y>201</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>Calgorithm</receiver>
+   <slot>ssaveresult()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>704</x>
+     <y>238</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>533</x>
+     <y>186</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked()</signal>
+   <receiver>Calgorithm</receiver>
+   <slot>readimage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>717</x>
+     <y>302</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>536</x>
+     <y>322</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>Calgorithm</receiver>
+   <slot>Getscrollnum()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>291</x>
+     <y>265</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>243</x>
+     <y>225</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tableWidget</sender>
+   <signal>itemChanged(QTableWidgetItem*)</signal>
+   <receiver>Calgorithm</receiver>
+   <slot>gettab(QTableWidgetItem*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>120</x>
+     <y>194</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>149</x>
+     <y>169</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>returnmain()</slot>
+  <slot>Getscrollnum()</slot>
+  <slot>suanfa()</slot>
+  <slot>sinitial()</slot>
+  <slot>sdetect()</slot>
+  <slot>ssaveresult()</slot>
+  <slot>readimage()</slot>
+  <slot>getcell(int,int)</slot>
+  <slot>gettab(QTableWidgetItem*)</slot>
+ </slots>
+</ui>

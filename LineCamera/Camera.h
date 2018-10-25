@@ -2,9 +2,12 @@
 
 #include "SapClassBasic.h"
 #include"HalconCpp.h"
+#include"helper.h"
+
 #define NAME_LENGTH  30
 
 using namespace std;
+
 class Camera
 {
 public:
@@ -15,19 +18,20 @@ public:
 	bool Link();
 
 	HalconCpp::HObject image;
-
+	queue <HalconCpp::HObject> imagelist;
 	void processimage();
 	void OnGrab();
 	void OnFreeze();
 	char serverName[NAME_LENGTH];
 	char resourceName[NAME_LENGTH];
 	int serverCount;
+	
+	void* linecameraaddr;
 private:	//к╫сп╠Да©	
 	BOOL DestroyObjects();
 	BOOL CreateObjects();
 	
 	SapLocation *pLocLft;
-
 
 	SapAcqDevice	*m_AcqDevice;
 	SapBuffer		*m_Buffers;

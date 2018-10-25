@@ -1,4 +1,5 @@
 <RCC>
-    <qresource prefix="LineCamera">
+    <qresource prefix="/LineCamera">
+        <file>Resources/公司LOG.jpg</file>
     </qresource>
 </RCC>

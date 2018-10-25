@@ -33,15 +33,7 @@ static int numxfer;
     	pGrabQtLft->m_Buffers->Read(0, mm * nn, dataBuf);///将图片数据赋给dataBuf
 	 GenImage1(&NewPartImage, "byte", mm, nn, (Hlong)dataBuf);
 	 
-	 string filename= "";
-	 filename.append("C:/Users/Administrator/Desktop/c++/new");
-	 numxfer++;
-	 stringstream stream;
-	  stream<< numxfer;
-	 filename.append(stream.str());
-     filename.append(".bmp");
-	 char* file = (char*)filename.data();
-	 HalconCpp::WriteImage(NewPartImage, "bmp", 0, (HalconCpp::HTuple)file);
+	 pGrabQtLft->imagelist.push(NewPartImage);
 
 	 pGrabQtLft->processimage();
 	 
@@ -155,7 +147,19 @@ BOOL Camera::CreateObjects()
 
 void Camera::processimage()
 {
-	
+	string filename = "";
+	filename.append("C:/Users/Administrator/Desktop/tp/new");
+	numxfer++;
+	stringstream stream;
+	stream << numxfer;
+	filename.append(stream.str());
+	filename.append(".bmp");
+	char* file = (char*)filename.data();
+	HalconCpp::WriteImage( imagelist.front(), "bmp", 0, (HalconCpp::HTuple)file);
+//	(LineCamera *)linecameraaddr->
+
+	//GetCallBack( imagelist.front());
+	imagelist.pop();
 
 }
 

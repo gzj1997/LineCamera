@@ -36,9 +36,27 @@
     <ClCompile Include="LineCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Calgorithm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cconsole.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Getsuanfa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="LineCamera.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Calgorithm.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Cconsole.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Getsuanfa.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -46,10 +64,30 @@
     <QtUic Include="LineCamera.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="Calgorithm.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="Cconsole.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="Getsuanfa.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="LineCamera.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kong.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="card.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

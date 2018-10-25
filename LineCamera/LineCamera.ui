@@ -6,88 +6,193 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>689</width>
-    <height>391</height>
+    <width>717</width>
+    <height>529</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>LineCamera</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="LineCamera.qrc">
+    <normaloff>:/LineCamera/Resources/公司LOG.jpg</normaloff>:/LineCamera/Resources/公司LOG.jpg</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>50</y>
-      <width>651</width>
-      <height>131</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QWidget" name="gridLayoutWidget">
+   <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>220</y>
-      <width>681</width>
-      <height>111</height>
+      <width>700</width>
+      <height>250</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="1" column="1">
-      <widget class="QPushButton" name="pushButton_5">
-       <property name="text">
-        <string>link</string>
+    <layout class="QVBoxLayout" name="verticalLayout_5">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0,0,0,0,0,0">
+       <property name="spacing">
+        <number>5</number>
        </property>
-      </widget>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;上限：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_4"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;下限&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_3"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;测量值：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_2"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>device</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit"/>
+       </item>
+      </layout>
      </item>
-     <item row="0" column="1">
-      <widget class="QPushButton" name="pushButton_2">
-       <property name="text">
-        <string>stop</string>
+     <item>
+      <layout class="QGridLayout" name="gridLayout">
+       <property name="leftMargin">
+        <number>0</number>
        </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="pushButton_4">
-       <property name="text">
-        <string>show</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string>grap</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QPushButton" name="pushButton_3">
-       <property name="text">
-        <string>close</string>
-       </property>
-      </widget>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pushButton_5">
+         <property name="text">
+          <string>link</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string>暂停</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="pushButton_4">
+         <property name="text">
+          <string>show</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="text">
+          <string>停止检测</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="pushButton_6">
+         <property name="text">
+          <string>算法设定</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="pushButton_7">
+         <property name="text">
+          <string>运动设定</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="pushButton_8">
+         <property name="text">
+          <string>PushButton</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QPushButton" name="pushButton_9">
+         <property name="text">
+          <string>设备检测</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>启动检测</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>0</y>
-      <width>501</width>
+      <x>10</x>
+      <y>10</y>
+      <width>701</width>
       <height>31</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>16</number>
+     </property>
      <item>
       <widget class="QLabel" name="label_3">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;颗粒物杂质光学检查机&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>WELCOME TO USE</string>
        </property>
       </widget>
      </item>
@@ -107,20 +212,23 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>TextLabel</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;上海迈迅威视觉科技有限公司&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
      </item>
     </layout>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>190</y>
-      <width>113</width>
-      <height>20</height>
+      <x>20</x>
+      <y>60</y>
+      <width>681</width>
+      <height>141</height>
      </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -129,7 +237,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>689</width>
+     <width>717</width>
      <height>23</height>
     </rect>
    </property>
@@ -145,6 +253,21 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>lineEdit_4</tabstop>
+  <tabstop>lineEdit_3</tabstop>
+  <tabstop>lineEdit_2</tabstop>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>pushButton_4</tabstop>
+  <tabstop>pushButton_5</tabstop>
+  <tabstop>pushButton_8</tabstop>
+  <tabstop>pushButton_6</tabstop>
+  <tabstop>pushButton_7</tabstop>
+  <tabstop>pushButton_9</tabstop>
+ </tabstops>
  <resources>
   <include location="LineCamera.qrc"/>
  </resources>
@@ -156,8 +279,8 @@
    <slot>showimage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>28</x>
-     <y>345</y>
+     <x>30</x>
+     <y>453</y>
     </hint>
     <hint type="destinationlabel">
      <x>484</x>
@@ -172,8 +295,8 @@
    <slot>btnopen()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>173</x>
-     <y>276</y>
+     <x>176</x>
+     <y>415</y>
     </hint>
     <hint type="destinationlabel">
      <x>199</x>
@@ -188,8 +311,8 @@
    <slot>btnstop()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>321</x>
-     <y>288</y>
+     <x>473</x>
+     <y>415</y>
     </hint>
     <hint type="destinationlabel">
      <x>377</x>
@@ -204,8 +327,8 @@
    <slot>btnclose()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>529</x>
-     <y>279</y>
+     <x>707</x>
+     <y>415</y>
     </hint>
     <hint type="destinationlabel">
      <x>495</x>
@@ -220,12 +343,44 @@
    <slot>linkdevice()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>416</x>
-     <y>336</y>
+     <x>473</x>
+     <y>453</y>
     </hint>
     <hint type="destinationlabel">
      <x>320</x>
      <y>357</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked()</signal>
+   <receiver>LineCameraClass</receiver>
+   <slot>setAlgorithm()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>152</x>
+     <y>491</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>82</x>
+     <y>367</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_7</sender>
+   <signal>clicked()</signal>
+   <receiver>LineCameraClass</receiver>
+   <slot>setconsole()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>473</x>
+     <y>491</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>387</x>
+     <y>367</y>
     </hint>
    </hints>
   </connection>
@@ -236,5 +391,7 @@
   <slot>btnclose()</slot>
   <slot>btnstop()</slot>
   <slot>linkdevice()</slot>
+  <slot>setAlgorithm()</slot>
+  <slot>setconsole()</slot>
  </slots>
 </ui>
