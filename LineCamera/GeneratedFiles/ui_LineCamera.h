@@ -251,6 +251,7 @@ public:
         QObject::connect(pushButton_5, SIGNAL(clicked()), LineCameraClass, SLOT(linkdevice()));
         QObject::connect(pushButton_6, SIGNAL(clicked()), LineCameraClass, SLOT(setAlgorithm()));
         QObject::connect(pushButton_7, SIGNAL(clicked()), LineCameraClass, SLOT(setconsole()));
+        QObject::connect(pushButton_8, SIGNAL(clicked()), LineCameraClass, SLOT(getproduct()));
 
         QMetaObject::connectSlotsByName(LineCameraClass);
     } // setupUi
@@ -268,7 +269,7 @@ public:
         pushButton_3->setText(QApplication::translate("LineCameraClass", "\345\201\234\346\255\242\346\243\200\346\265\213", 0));
         pushButton_6->setText(QApplication::translate("LineCameraClass", "\347\256\227\346\263\225\350\256\276\345\256\232", 0));
         pushButton_7->setText(QApplication::translate("LineCameraClass", "\350\277\220\345\212\250\350\256\276\345\256\232", 0));
-        pushButton_8->setText(QApplication::translate("LineCameraClass", "PushButton", 0));
+        pushButton_8->setText(QApplication::translate("LineCameraClass", "Login", 0));
         pushButton_9->setText(QApplication::translate("LineCameraClass", "\350\256\276\345\244\207\346\243\200\346\265\213", 0));
         pushButton->setText(QApplication::translate("LineCameraClass", "\345\220\257\345\212\250\346\243\200\346\265\213", 0));
         label_3->setText(QApplication::translate("LineCameraClass", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">\351\242\227\347\262\222\347\211\251\346\235\202\350\264\250\345\205\211\345\255\246\346\243\200\346\237\245\346\234\272</span></p></body></html>", 0));

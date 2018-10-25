@@ -10,6 +10,7 @@
 #include<qdebug.h>
 #include"DMC2210.h"
 #include<qmessagebox.h>
+#include"LoginData.h"
 #define NAME_LENGTH  30
 using namespace HalconCpp;
 
@@ -86,7 +87,7 @@ private:
 	void btnstop();
     void showimage();
 	void linkdevice();
-
+	void getproduct();
 };
 
 static LineCamera * LLc;

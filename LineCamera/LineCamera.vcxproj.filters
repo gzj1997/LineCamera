@@ -45,6 +45,9 @@
     <ClCompile Include="Getsuanfa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LoginData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="LineCamera.h">
@@ -57,6 +60,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="Getsuanfa.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="LoginData.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -73,6 +79,9 @@
     <QtUic Include="Getsuanfa.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="LoginData.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="LineCamera.qrc">
@@ -87,6 +96,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="card.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pathhelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

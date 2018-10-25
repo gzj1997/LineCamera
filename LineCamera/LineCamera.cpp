@@ -27,6 +27,7 @@ void LineCamera::initail()
 		QMessageBox::warning(this,"warning",u8"运动控制卡未连接",QMessageBox::Ok,QMessageBox::NoButton );
 		this->close();
 	}
+	this->show();
 }
 void LineCamera::setconsole()
 {
@@ -123,6 +124,16 @@ void LineCamera::linkdevice()
 	
 	ui.lineEdit->setText(a);
 	
+}
+
+void LineCamera::getproduct()
+{
+	LoginData *Ld;
+	Ld = new LoginData(this);
+
+	connect(Ld, SIGNAL(sendsignal()), this, SLOT(reshow()));
+	Ld->setAttribute(Qt::WA_DeleteOnClose);
+	Ld->show();
 }
 
 

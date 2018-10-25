@@ -14,6 +14,6 @@ int main(int argc, char *argv[])
 
 	LineCamera w;
 //	call_show = &w;
-	w.show();
+	//w.show();
 	return a.exec();
 }
