@@ -11,6 +11,10 @@
 #include"DMC2210.h"
 #include<qmessagebox.h>
 #include"LoginData.h"
+#include<qxmlstream.h>
+#include"datahelper.h"
+#include<thread>
+#include<qdir.h>
 #define NAME_LENGTH  30
 using namespace HalconCpp;
 
@@ -32,14 +36,25 @@ public:
 	queue <HalconCpp::HObject> imagelist;
 	
 	
+	
 	void processimage();
 	void OnGrab();
 	void OnFreeze();
 	char serverName[NAME_LENGTH];
 	char resourceName[NAME_LENGTH];
 	int serverCount;
+
+	string logicname;
+	string devicename;
+	double pixeldist;
+	int exposuretime;
+	int gain;
+	int photowidth;
+	const char* ccfpath;
+	QList<DataSelected> *dataselectlist;
 	void * Lcamera;
 	//void* linecameraaddr;
+	void  sf_test(long x, long y);
 private:	//私有变量	
 	BOOL DestroyObjects();
 	BOOL CreateObjects();
@@ -55,7 +70,7 @@ private:	//私有变量
 	SapAcqToBuf *pTransferLft;
 };
 
-static int numm = 0;
+
 
 class LineCamera : public QMainWindow
 {
@@ -65,20 +80,26 @@ class LineCamera : public QMainWindow
 public:
 	LineCamera(QWidget *parent = Q_NULLPTR);
 	Camera *cameras[5];
-
+	
     Hlong MainWndID;
 	// Local control variables 
 	HTuple  hv_Width, hv_Height;
     HTuple  hv_WindowID;
 	HObject  ho_SelectedRegions;
 	HObject h_testimage;
-
+	int numm = 0;
+	int speed_heng;
+	int speed_zong;
+	long position;
 	static void showlineimage(HalconCpp::HObject hv_image, LineCamera * lcamera);
 	void initail();
+	void readcamerasetting();
+	void LoadCameraResultToShowData();
+	void startrun();
+	void run();
 private:
 	Ui::LineCameraClass ui;
 	private slots:
-
 	void setAlgorithm();
 	void setconsole();
 	void reshow();
@@ -88,6 +109,11 @@ private:
     void showimage();
 	void linkdevice();
 	void getproduct();
+	//void returnlogindata();
+	void test();
+	void geta();
+	void getb();
+
 };
 
 static LineCamera * LLc;

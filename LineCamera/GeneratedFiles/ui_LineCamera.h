@@ -252,6 +252,9 @@ public:
         QObject::connect(pushButton_6, SIGNAL(clicked()), LineCameraClass, SLOT(setAlgorithm()));
         QObject::connect(pushButton_7, SIGNAL(clicked()), LineCameraClass, SLOT(setconsole()));
         QObject::connect(pushButton_8, SIGNAL(clicked()), LineCameraClass, SLOT(getproduct()));
+        QObject::connect(pushButton_9, SIGNAL(clicked()), LineCameraClass, SLOT(test()));
+        QObject::connect(lineEdit_4, SIGNAL(editingFinished()), LineCameraClass, SLOT(geta()));
+        QObject::connect(lineEdit_3, SIGNAL(editingFinished()), LineCameraClass, SLOT(getb()));
 
         QMetaObject::connectSlotsByName(LineCameraClass);
     } // setupUi

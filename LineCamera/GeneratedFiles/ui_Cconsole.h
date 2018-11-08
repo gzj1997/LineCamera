@@ -28,27 +28,28 @@ class Ui_Cconsole
 {
 public:
     QDial *dial;
-    QLineEdit *lineEdit;
+    QLineEdit *ZongEdit;
     QLabel *label;
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
-    QLineEdit *lineEdit_4;
+    QLineEdit *PixelEdit;
     QLabel *label_2;
     QLabel *label_3;
     QLabel *label_4;
-    QLineEdit *lineEdit_2;
-    QLineEdit *lineEdit_3;
-    QLineEdit *lineEdit_5;
+    QLineEdit *ExposeEdit;
+    QLineEdit *GainEdit;
+    QLineEdit *WidthEdit;
     QLabel *label_5;
     QDial *dial_2;
     QLabel *label_6;
-    QLineEdit *lineEdit_6;
+    QLineEdit *HengEdit;
     QWidget *gridLayoutWidget_2;
     QGridLayout *gridLayout_2;
     QPushButton *pushButton_4;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
     QPushButton *pushButton;
+    QLabel *label_7;
 
     void setupUi(QDialog *Cconsole)
     {
@@ -58,24 +59,24 @@ public:
         dial = new QDial(Cconsole);
         dial->setObjectName(QStringLiteral("dial"));
         dial->setGeometry(QRect(30, 10, 171, 171));
-        lineEdit = new QLineEdit(Cconsole);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(90, 190, 81, 31));
+        ZongEdit = new QLineEdit(Cconsole);
+        ZongEdit->setObjectName(QStringLiteral("ZongEdit"));
+        ZongEdit->setGeometry(QRect(90, 190, 81, 31));
         label = new QLabel(Cconsole);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(20, 200, 61, 20));
         gridLayoutWidget = new QWidget(Cconsole);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(430, 10, 181, 291));
+        gridLayoutWidget->setGeometry(QRect(440, 20, 161, 281));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        lineEdit_4 = new QLineEdit(gridLayoutWidget);
-        lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
+        PixelEdit = new QLineEdit(gridLayoutWidget);
+        PixelEdit->setObjectName(QStringLiteral("PixelEdit"));
 
-        gridLayout->addWidget(lineEdit_4, 2, 1, 1, 1);
+        gridLayout->addWidget(PixelEdit, 2, 1, 1, 1);
 
         label_2 = new QLabel(gridLayoutWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
@@ -92,20 +93,20 @@ public:
 
         gridLayout->addWidget(label_4, 2, 0, 1, 1);
 
-        lineEdit_2 = new QLineEdit(gridLayoutWidget);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
+        ExposeEdit = new QLineEdit(gridLayoutWidget);
+        ExposeEdit->setObjectName(QStringLiteral("ExposeEdit"));
 
-        gridLayout->addWidget(lineEdit_2, 0, 1, 1, 1);
+        gridLayout->addWidget(ExposeEdit, 0, 1, 1, 1);
 
-        lineEdit_3 = new QLineEdit(gridLayoutWidget);
-        lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
+        GainEdit = new QLineEdit(gridLayoutWidget);
+        GainEdit->setObjectName(QStringLiteral("GainEdit"));
 
-        gridLayout->addWidget(lineEdit_3, 1, 1, 1, 1);
+        gridLayout->addWidget(GainEdit, 1, 1, 1, 1);
 
-        lineEdit_5 = new QLineEdit(gridLayoutWidget);
-        lineEdit_5->setObjectName(QStringLiteral("lineEdit_5"));
+        WidthEdit = new QLineEdit(gridLayoutWidget);
+        WidthEdit->setObjectName(QStringLiteral("WidthEdit"));
 
-        gridLayout->addWidget(lineEdit_5, 3, 1, 1, 1);
+        gridLayout->addWidget(WidthEdit, 3, 1, 1, 1);
 
         label_5 = new QLabel(gridLayoutWidget);
         label_5->setObjectName(QStringLiteral("label_5"));
@@ -118,9 +119,9 @@ public:
         label_6 = new QLabel(Cconsole);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setGeometry(QRect(230, 200, 61, 20));
-        lineEdit_6 = new QLineEdit(Cconsole);
-        lineEdit_6->setObjectName(QStringLiteral("lineEdit_6"));
-        lineEdit_6->setGeometry(QRect(300, 190, 81, 31));
+        HengEdit = new QLineEdit(Cconsole);
+        HengEdit->setObjectName(QStringLiteral("HengEdit"));
+        HengEdit->setGeometry(QRect(300, 190, 81, 31));
         gridLayoutWidget_2 = new QWidget(Cconsole);
         gridLayoutWidget_2->setObjectName(QStringLiteral("gridLayoutWidget_2"));
         gridLayoutWidget_2->setGeometry(QRect(40, 230, 351, 71));
@@ -149,14 +150,29 @@ public:
 
         gridLayout_2->addWidget(pushButton, 0, 1, 1, 1);
 
+        label_7 = new QLabel(Cconsole);
+        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setGeometry(QRect(390, 10, 181, 31));
         dial->raise();
-        lineEdit->raise();
+        ZongEdit->raise();
         label->raise();
         gridLayoutWidget->raise();
         dial_2->raise();
         label_6->raise();
         gridLayoutWidget_2->raise();
-        lineEdit_6->raise();
+        HengEdit->raise();
+        label_7->raise();
+        QWidget::setTabOrder(pushButton_2, ZongEdit);
+        QWidget::setTabOrder(ZongEdit, HengEdit);
+        QWidget::setTabOrder(HengEdit, ExposeEdit);
+        QWidget::setTabOrder(ExposeEdit, GainEdit);
+        QWidget::setTabOrder(GainEdit, PixelEdit);
+        QWidget::setTabOrder(PixelEdit, WidthEdit);
+        QWidget::setTabOrder(WidthEdit, pushButton_3);
+        QWidget::setTabOrder(pushButton_3, pushButton);
+        QWidget::setTabOrder(pushButton, pushButton_4);
+        QWidget::setTabOrder(pushButton_4, dial);
+        QWidget::setTabOrder(dial, dial_2);
 
         retranslateUi(Cconsole);
         QObject::connect(pushButton_2, SIGNAL(clicked()), Cconsole, SLOT(returnmain()));
@@ -183,6 +199,7 @@ public:
         pushButton_2->setText(QApplication::translate("Cconsole", "\344\277\235\345\255\230\345\271\266\351\200\200\345\207\272", 0));
         pushButton_3->setText(QApplication::translate("Cconsole", "\347\272\265\345\220\221\345\220\257\345\212\250", 0));
         pushButton->setText(QApplication::translate("Cconsole", "\346\250\252\345\220\221\345\220\257\345\212\250", 0));
+        label_7->setText(QString());
     } // retranslateUi
 
 };

@@ -13,6 +13,22 @@
 #include"qcombobox.h"
 #include"Getsuanfa.h"
 #include<qwindow.h>
+#include<qdom.h>
+#include<iostream>
+#include<qxmlstream.h>
+using namespace std;
+
+class Para
+{
+public:
+	int  thr;
+	int  dth;
+	int area_min,area_max;
+	int width_min,width_max;
+private:
+
+};
+
 class Calgorithm : public QDialog
 {
 	Q_OBJECT
@@ -28,8 +44,12 @@ public:
 	// Local control variables 
 	HalconCpp::HTuple  hv_Width, hv_Height;
 	HalconCpp::HTuple  hv_WindowID;
+	string allpath;
+	Para *para;
 	void initial();
 	void suanfa1();
+	void getpara();
+	void readpara();
 signals:
 	void sendsignal();//这个函数用户向主界面通知关闭的消息
 private:
@@ -42,7 +62,12 @@ private:
 	void sdetect();
 	void ssaveresult();
 	void readimage();
+	void saveimage();
+	void savepara();
 	void getcell(int x, int y);
 	void gettab(QTableWidgetItem * kkk);
 	//void getblack();
 };
+
+
+

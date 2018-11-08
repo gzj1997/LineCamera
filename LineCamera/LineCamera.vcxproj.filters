@@ -101,5 +101,11 @@
     <ClInclude Include="pathhelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="datahelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filehelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

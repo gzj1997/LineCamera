@@ -23,7 +23,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="ZongEdit">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -49,15 +49,15 @@
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>10</y>
-     <width>181</width>
-     <height>291</height>
+     <x>440</x>
+     <y>20</y>
+     <width>161</width>
+     <height>281</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="2" column="1">
-     <widget class="QLineEdit" name="lineEdit_4"/>
+     <widget class="QLineEdit" name="PixelEdit"/>
     </item>
     <item row="0" column="0">
      <widget class="QLabel" name="label_2">
@@ -81,13 +81,13 @@
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QLineEdit" name="lineEdit_2"/>
+     <widget class="QLineEdit" name="ExposeEdit"/>
     </item>
     <item row="1" column="1">
-     <widget class="QLineEdit" name="lineEdit_3"/>
+     <widget class="QLineEdit" name="GainEdit"/>
     </item>
     <item row="3" column="1">
-     <widget class="QLineEdit" name="lineEdit_5"/>
+     <widget class="QLineEdit" name="WidthEdit"/>
     </item>
     <item row="3" column="0">
      <widget class="QLabel" name="label_5">
@@ -121,7 +121,7 @@
     <string>横向速度：</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_6">
+  <widget class="QLineEdit" name="HengEdit">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -171,16 +171,44 @@
     </item>
    </layout>
   </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>10</y>
+     <width>181</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>dial</zorder>
-  <zorder>lineEdit</zorder>
+  <zorder>ZongEdit</zorder>
   <zorder>label</zorder>
   <zorder>gridLayoutWidget</zorder>
   <zorder>dial_2</zorder>
   <zorder>label_6</zorder>
   <zorder>gridLayoutWidget_2</zorder>
-  <zorder>lineEdit_6</zorder>
+  <zorder>HengEdit</zorder>
+  <zorder>label_7</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>ZongEdit</tabstop>
+  <tabstop>HengEdit</tabstop>
+  <tabstop>ExposeEdit</tabstop>
+  <tabstop>GainEdit</tabstop>
+  <tabstop>PixelEdit</tabstop>
+  <tabstop>WidthEdit</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_4</tabstop>
+  <tabstop>dial</tabstop>
+  <tabstop>dial_2</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

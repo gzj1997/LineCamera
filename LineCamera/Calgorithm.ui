@@ -49,7 +49,7 @@
     <item row="1" column="0">
      <widget class="QPushButton" name="pushButton_2">
       <property name="text">
-       <string>保存显示</string>
+       <string>保存图片</string>
       </property>
      </widget>
     </item>
@@ -279,6 +279,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>Calgorithm</receiver>
+   <slot>saveimage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>523</x>
+     <y>280</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>507</x>
+     <y>260</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>returnmain()</slot>
@@ -290,5 +306,6 @@
   <slot>readimage()</slot>
   <slot>getcell(int,int)</slot>
   <slot>gettab(QTableWidgetItem*)</slot>
+  <slot>saveimage()</slot>
  </slots>
 </ui>

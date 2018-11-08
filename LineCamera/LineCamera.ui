@@ -400,6 +400,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_9</sender>
+   <signal>clicked()</signal>
+   <receiver>LineCameraClass</receiver>
+   <slot>test()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>621</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>598</x>
+     <y>499</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEdit_4</sender>
+   <signal>editingFinished()</signal>
+   <receiver>LineCameraClass</receiver>
+   <slot>geta()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>105</x>
+     <y>313</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>89</x>
+     <y>281</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEdit_3</sender>
+   <signal>editingFinished()</signal>
+   <receiver>LineCameraClass</receiver>
+   <slot>getb()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>270</x>
+     <y>308</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>247</x>
+     <y>277</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>showimage()</slot>
@@ -410,5 +458,8 @@
   <slot>setAlgorithm()</slot>
   <slot>setconsole()</slot>
   <slot>getproduct()</slot>
+  <slot>test()</slot>
+  <slot>geta()</slot>
+  <slot>getb()</slot>
  </slots>
 </ui>

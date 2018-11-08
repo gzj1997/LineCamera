@@ -144,6 +144,7 @@ public:
         QObject::connect(pushButton_6, SIGNAL(clicked()), Calgorithm, SLOT(readimage()));
         QObject::connect(horizontalSlider, SIGNAL(valueChanged(int)), Calgorithm, SLOT(Getscrollnum()));
         QObject::connect(tableWidget, SIGNAL(itemChanged(QTableWidgetItem*)), Calgorithm, SLOT(gettab(QTableWidgetItem*)));
+        QObject::connect(pushButton_2, SIGNAL(clicked()), Calgorithm, SLOT(saveimage()));
 
         QMetaObject::connectSlotsByName(Calgorithm);
     } // setupUi
@@ -152,7 +153,7 @@ public:
     {
         Calgorithm->setWindowTitle(QApplication::translate("Calgorithm", "Calgorithm", 0));
         label->setText(QString());
-        pushButton_2->setText(QApplication::translate("Calgorithm", "\344\277\235\345\255\230\346\230\276\347\244\272", 0));
+        pushButton_2->setText(QApplication::translate("Calgorithm", "\344\277\235\345\255\230\345\233\276\347\211\207", 0));
         pushButton->setText(QApplication::translate("Calgorithm", "\345\210\235\345\247\213\345\214\226", 0));
         pushButton_3->setText(QApplication::translate("Calgorithm", "\346\211\271\351\207\217\346\243\200\346\265\213", 0));
         pushButton_4->setText(QApplication::translate("Calgorithm", "\344\277\235\345\255\230\347\273\223\346\236\234", 0));
