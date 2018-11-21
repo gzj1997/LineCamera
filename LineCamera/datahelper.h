@@ -65,7 +65,7 @@ public:
 		 xmlWriter.writeStartDocument();
 		 xmlWriter.writeStartElement("CCD1");
 		 xmlWriter.writeAttribute("name", QString::fromStdString(name));
-		 xmlWriter.writeAttribute("PixelDist", QString::number(pixel));
+		 xmlWriter.writeAttribute("chuiqi", QString::number(pixel));
 		 xmlWriter.writeAttribute("ExposureTime", QString::number(expose));
 		 xmlWriter.writeAttribute("Gain", QString::number(gain));
 		 xmlWriter.writeAttribute("PhotoWidth", QString::number(photowidth));
@@ -128,7 +128,7 @@ public:
 				 if (reader.name() == "CCD1")
 				 {
 					 name = reader.attributes().value("name").toString().toStdString();
-					 pixel = reader.attributes().value("PixelDist").toDouble();
+					 pixel = reader.attributes().value("chuiqi").toDouble();
 					 expose = reader.attributes().value("ExposureTime").toInt();
 					 gain = reader.attributes().value("Gain").toInt();
 					 photowidth = reader.attributes().value("PhotoWidth").toInt();

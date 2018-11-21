@@ -12,7 +12,7 @@ Vic Name=Default
 # GenApi persistence file (version 2.4.0)
 # N/A = TeledyneDALSA::Symphony -- Symphony Configuration XML -- Device version = 1.1.23 -- Product GUID = 6a3fe8b0-5fec-11e2-9520-ea771535200d -- Product version GUID = 713f235e-5fec-11e2-ba41-ea771535200d
 AcquisitionLineRate	10000
-ExposureTime	25
+ExposureTime	35
 GainSelector	DigitalAll
 GainSelector	DigitalAll
 Gain	1

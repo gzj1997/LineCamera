@@ -20,8 +20,8 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSlider>
-#include <QtWidgets/QTableView>
 #include <QtWidgets/QTableWidget>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -46,7 +46,7 @@ public:
     QPushButton *pushButton_7;
     QLabel *label_2;
     QSlider *horizontalSlider;
-    QTableView *tableView;
+    QTextEdit *textEdit;
 
     void setupUi(QDialog *Calgorithm)
     {
@@ -58,7 +58,7 @@ public:
         label->setGeometry(QRect(20, 20, 681, 141));
         tableWidget = new QTableWidget(Calgorithm);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(10, 180, 271, 91));
+        tableWidget->setGeometry(QRect(10, 180, 271, 111));
         gridLayoutWidget = new QWidget(Calgorithm);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
         gridLayoutWidget->setGeometry(QRect(480, 180, 239, 161));
@@ -131,9 +131,9 @@ public:
 
         gridLayout_2->addWidget(horizontalSlider, 1, 0, 1, 2);
 
-        tableView = new QTableView(Calgorithm);
-        tableView->setObjectName(QStringLiteral("tableView"));
-        tableView->setGeometry(QRect(10, 270, 271, 81));
+        textEdit = new QTextEdit(Calgorithm);
+        textEdit->setObjectName(QStringLiteral("textEdit"));
+        textEdit->setGeometry(QRect(10, 300, 271, 61));
 
         retranslateUi(Calgorithm);
         QObject::connect(pushButton_5, SIGNAL(clicked()), Calgorithm, SLOT(returnmain()));
@@ -156,7 +156,7 @@ public:
         pushButton_2->setText(QApplication::translate("Calgorithm", "\344\277\235\345\255\230\345\233\276\347\211\207", 0));
         pushButton->setText(QApplication::translate("Calgorithm", "\345\210\235\345\247\213\345\214\226", 0));
         pushButton_3->setText(QApplication::translate("Calgorithm", "\346\211\271\351\207\217\346\243\200\346\265\213", 0));
-        pushButton_4->setText(QApplication::translate("Calgorithm", "\344\277\235\345\255\230\347\273\223\346\236\234", 0));
+        pushButton_4->setText(QApplication::translate("Calgorithm", "\346\230\276\347\244\272\347\273\223\346\236\234", 0));
         pushButton_5->setText(QApplication::translate("Calgorithm", "\344\277\235\345\255\230\351\200\200\345\207\272", 0));
         pushButton_6->setText(QApplication::translate("Calgorithm", "\350\257\273\345\217\226\345\233\276\347\211\207", 0));
         radioButton->setText(QApplication::translate("Calgorithm", "\351\273\221\350\211\262", 0));

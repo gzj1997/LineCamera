@@ -59,13 +59,6 @@
     <item row="2" column="1">
      <widget class="QLineEdit" name="PixelEdit"/>
     </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>曝光：</string>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="0">
      <widget class="QLabel" name="label_3">
       <property name="text">
@@ -76,7 +69,7 @@
     <item row="2" column="0">
      <widget class="QLabel" name="label_4">
       <property name="text">
-       <string>比例</string>
+       <string>吹气时间</string>
       </property>
      </widget>
     </item>
@@ -93,6 +86,13 @@
      <widget class="QLabel" name="label_5">
       <property name="text">
        <string>线宽：</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>曝光：</string>
       </property>
      </widget>
     </item>

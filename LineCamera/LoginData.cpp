@@ -20,7 +20,6 @@ void LoginData::addproductname()
 	{
 		ui.comboBox->addItem(var);
 	}
-	Dpath = dataPath;
 	//qDebug() << QString::fromStdString(Dpath);
 }
 
@@ -37,7 +36,6 @@ void LoginData::newproduct()
 		{
 		/*	Sdatapath = (QDir::currentPath() + "/data").toStdString();
 			Sproduct = name.toStdString();*/
-			Pname = name.toStdString();
 
 			this->accept();
 			//emit sendsignal();
@@ -52,7 +50,7 @@ void LoginData::newproduct()
 void LoginData::getproductname()
 {
 	PathHelper::initial();
-	Pname =  ui.comboBox->currentText().toStdString();
+//	Pname =  ui.comboBox->currentText().toStdString();
 	this->accept();
 	//Sdatapath1 = (QDir::currentPath() + "/data").toStdString();
 	//Sproduct = productname;

@@ -32,7 +32,7 @@
      <x>10</x>
      <y>180</y>
      <width>271</width>
-     <height>91</height>
+     <height>111</height>
     </rect>
    </property>
   </widget>
@@ -70,7 +70,7 @@
     <item row="0" column="2">
      <widget class="QPushButton" name="pushButton_4">
       <property name="text">
-       <string>保存结果</string>
+       <string>显示结果</string>
       </property>
      </widget>
     </item>
@@ -137,13 +137,13 @@
     </item>
    </layout>
   </widget>
-  <widget class="QTableView" name="tableView">
+  <widget class="QTextEdit" name="textEdit">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>270</y>
+     <y>300</y>
      <width>271</width>
-     <height>81</height>
+     <height>61</height>
     </rect>
    </property>
   </widget>

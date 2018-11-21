@@ -33,13 +33,13 @@ public:
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
     QLineEdit *PixelEdit;
-    QLabel *label_2;
     QLabel *label_3;
     QLabel *label_4;
     QLineEdit *ExposeEdit;
     QLineEdit *GainEdit;
     QLineEdit *WidthEdit;
     QLabel *label_5;
+    QLabel *label_2;
     QDial *dial_2;
     QLabel *label_6;
     QLineEdit *HengEdit;
@@ -78,11 +78,6 @@ public:
 
         gridLayout->addWidget(PixelEdit, 2, 1, 1, 1);
 
-        label_2 = new QLabel(gridLayoutWidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
-
-        gridLayout->addWidget(label_2, 0, 0, 1, 1);
-
         label_3 = new QLabel(gridLayoutWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
 
@@ -112,6 +107,11 @@ public:
         label_5->setObjectName(QStringLiteral("label_5"));
 
         gridLayout->addWidget(label_5, 3, 0, 1, 1);
+
+        label_2 = new QLabel(gridLayoutWidget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        gridLayout->addWidget(label_2, 0, 0, 1, 1);
 
         dial_2 = new QDial(Cconsole);
         dial_2->setObjectName(QStringLiteral("dial_2"));
@@ -190,10 +190,10 @@ public:
     {
         Cconsole->setWindowTitle(QApplication::translate("Cconsole", "Cconsole", 0));
         label->setText(QApplication::translate("Cconsole", "\347\272\265\345\220\221\351\200\237\345\272\246\357\274\232", 0));
-        label_2->setText(QApplication::translate("Cconsole", "\346\233\235\345\205\211\357\274\232", 0));
         label_3->setText(QApplication::translate("Cconsole", "\345\242\236\347\233\212", 0));
-        label_4->setText(QApplication::translate("Cconsole", "\346\257\224\344\276\213", 0));
+        label_4->setText(QApplication::translate("Cconsole", "\345\220\271\346\260\224\346\227\266\351\227\264", 0));
         label_5->setText(QApplication::translate("Cconsole", "\347\272\277\345\256\275\357\274\232", 0));
+        label_2->setText(QApplication::translate("Cconsole", "\346\233\235\345\205\211\357\274\232", 0));
         label_6->setText(QApplication::translate("Cconsole", "\346\250\252\345\220\221\351\200\237\345\272\246\357\274\232", 0));
         pushButton_4->setText(QApplication::translate("Cconsole", "\345\220\270\346\260\224", 0));
         pushButton_2->setText(QApplication::translate("Cconsole", "\344\277\235\345\255\230\345\271\266\351\200\200\345\207\272", 0));

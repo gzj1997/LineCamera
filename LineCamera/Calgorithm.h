@@ -18,6 +18,21 @@
 #include<qxmlstream.h>
 using namespace std;
 
+class Result
+{
+public:
+	int x;
+	int y;
+	int area;
+
+};
+
+class ShowList {
+public:
+	int num;
+	list<Result> result;
+};
+
 class Para
 {
 public:
@@ -38,6 +53,8 @@ public:
 	Calgorithm(QWidget *parent , HalconCpp::HObject image);
 	~Calgorithm();
 	HalconCpp::HObject himage;
+	HalconCpp::HObject resultimage;
+	ShowList * showlist;
 	int scrollnum;
 	HalconCpp::HTuple aaa;
 	Hlong MainWndID;
