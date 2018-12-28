@@ -21,7 +21,7 @@ void Cconsole::initial()
 	ui.HengEdit->setText("0");
 	ui.ZongEdit->setText("0");
 	ui.dial->setMinimum(0);
-	ui.dial->setMaximum(20000);
+	ui.dial->setMaximum(80000);
 	ui.dial->setNotchesVisible(true);
 
 	ui.dial_2->setMinimum(0);
