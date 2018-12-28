@@ -54,7 +54,7 @@
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_XML_LIB;QT_XMLPATTERNS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files\MVTec\HALCON-12.0\include;C:\Program Files\MVTec\HALCON-12.0\include\halconcpp;C:\Program Files\Teledyne DALSA\Sapera\Include;C:\Program Files\Teledyne DALSA\Sapera\Classes\Basic;C:\Program Files\MVTec\HALCON-13.0\include;C:\Program Files\MVTec\HALCON-13.0\include\halconcpp;.\GeneratedFiles;.;D:\Qt\Qt5.6.0\5.6\msvc2015\include;.\GeneratedFiles\$(ConfigurationName);D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtCore;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtGui;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtANGLE;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtWidgets;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtXml;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtXmlPatterns;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\MVTec\HALCON-12.0\include;C:\Program Files\MVTec\HALCON-12.0\include\halconcpp;C:\Program Files\Teledyne DALSA\Sapera\Include;C:\Program Files\Teledyne DALSA\Sapera\Classes\Basic;C:\Program Files\MVTec\HALCON-13.0\include;C:\Program Files\MVTec\HALCON-13.0\include\halconcpp;.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtXmlPatterns;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -63,33 +63,33 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>C:\Program Files\MVTec\HALCON-12.0\lib\x86sse2-win32;C:\Program Files\Teledyne DALSA\Sapera\Lib;C:\Program Files\MVTec\HALCON-13.0\lib\x86sse2-win32;D:\Qt\Qt5.6.0\5.6\msvc2015\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files\MVTec\HALCON-12.0\lib\x86sse2-win32;C:\Program Files\Teledyne DALSA\Sapera\Lib;C:\Program Files\MVTec\HALCON-13.0\lib\x86sse2-win32;$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>DMC2210.lib;corapi.lib;SapClassBasic.lib;halconcpp.lib;D:\Qt\Qt5.6.0\5.6\msvc2015\lib\qtmaind.lib;D:\Qt\Qt5.6.0\5.6\msvc2015\lib\Qt5Cored.lib;D:\Qt\Qt5.6.0\5.6\msvc2015\lib\Qt5Guid.lib;D:\Qt\Qt5.6.0\5.6\msvc2015\lib\Qt5Widgetsd.lib;D:\Qt\Qt5.6.0\5.6\msvc2015\lib\Qt5Xmld.lib;D:\Qt\Qt5.6.0\5.6\msvc2015\lib\Qt5XmlPatternsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>DMC2210.lib;corapi.lib;SapClassBasic.lib;halconcpp.lib;qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Widgetsd.lib;Qt5Xmld.lib;Qt5XmlPatternsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <QtMoc>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <IncludePath>C:\Program Files\MVTec\HALCON-12.0\include;C:\Program Files\MVTec\HALCON-12.0\include\halconcpp;C:\Program Files\Teledyne DALSA\Sapera\Include;C:\Program Files\Teledyne DALSA\Sapera\Classes\Basic;C:\Program Files\MVTec\HALCON-13.0\include;C:\Program Files\MVTec\HALCON-13.0\include\halconcpp;.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtXmlPatterns;%(AdditionalIncludeDirectories)</IncludePath>
       <Define>UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_XML_LIB;QT_XMLPATTERNS_LIB;%(PreprocessorDefinitions)</Define>
-      <QTDIR>D:\Qt\Qt5.6.0\5.6\msvc2015</QTDIR>
+      <QTDIR>$(QTDIR)</QTDIR>
     </QtMoc>
     <QtUic>
       <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
       <OutputFile>.\GeneratedFiles\ui_%(Filename).h</OutputFile>
-      <QTDIR>D:\Qt\Qt5.6.0\5.6\msvc2015</QTDIR>
+      <QTDIR>$(QTDIR)</QTDIR>
     </QtUic>
     <QtRcc>
       <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
       <OutputFile>.\GeneratedFiles\qrc_%(Filename).cpp</OutputFile>
-      <QTDIR>D:\Qt\Qt5.6.0\5.6\msvc2015</QTDIR>
+      <QTDIR>$(QTDIR)</QTDIR>
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_XML_LIB;QT_XMLPATTERNS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\GeneratedFiles;.;D:\Qt\Qt5.6.0\5.6\msvc2015\include;.\GeneratedFiles\$(ConfigurationName);D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtCore;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtGui;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtANGLE;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtWidgets;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtXml;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtXmlPatterns;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtXmlPatterns;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -97,26 +97,26 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>D:\Qt\Qt5.6.0\5.6\msvc2015\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>D:\Qt\Qt5.6.0\5.6\msvc2015\lib\qtmain.lib;D:\Qt\Qt5.6.0\5.6\msvc2015\lib\Qt5Core.lib;D:\Qt\Qt5.6.0\5.6\msvc2015\lib\Qt5Gui.lib;D:\Qt\Qt5.6.0\5.6\msvc2015\lib\Qt5Widgets.lib;D:\Qt\Qt5.6.0\5.6\msvc2015\lib\Qt5Xml.lib;D:\Qt\Qt5.6.0\5.6\msvc2015\lib\Qt5XmlPatterns.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>qtmain.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;Qt5Xml.lib;Qt5XmlPatterns.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <QtMoc>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtXmlPatterns;%(AdditionalIncludeDirectories)</IncludePath>
       <Define>UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_XML_LIB;QT_XMLPATTERNS_LIB;%(PreprocessorDefinitions)</Define>
-      <QTDIR>D:\Qt\Qt5.6.0\5.6\msvc2015</QTDIR>
+      <QTDIR>$(QTDIR)</QTDIR>
     </QtMoc>
     <QtUic>
       <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
       <OutputFile>.\GeneratedFiles\ui_%(Filename).h</OutputFile>
-      <QTDIR>D:\Qt\Qt5.6.0\5.6\msvc2015</QTDIR>
+      <QTDIR>$(QTDIR)</QTDIR>
     </QtUic>
     <QtRcc>
       <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
       <OutputFile>.\GeneratedFiles\qrc_%(Filename).cpp</OutputFile>
-      <QTDIR>D:\Qt\Qt5.6.0\5.6\msvc2015</QTDIR>
+      <QTDIR>$(QTDIR)</QTDIR>
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -129,8 +129,8 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="LineCamera.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files\Teledyne DALSA\Sapera\Include;C:\Program Files\Teledyne DALSA\Sapera\Classes\Basic;C:\Program Files\MVTec\HALCON-13.0\include;C:\Program Files\MVTec\HALCON-13.0\include\halconcpp;.\GeneratedFiles;.;D:\Qt\Qt5.6.0\5.6\msvc2015\include;.\GeneratedFiles\$(ConfigurationName);D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtCore;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtGui;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtANGLE;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtWidgets;%(AdditionalIncludeDirectories)</IncludePath>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;D:\Qt\Qt5.6.0\5.6\msvc2015\include;.\GeneratedFiles\$(ConfigurationName);D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtCore;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtGui;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtANGLE;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtWidgets;%(AdditionalIncludeDirectories)</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files\Teledyne DALSA\Sapera\Include;C:\Program Files\Teledyne DALSA\Sapera\Classes\Basic;C:\Program Files\MVTec\HALCON-13.0\include;C:\Program Files\MVTec\HALCON-13.0\include\halconcpp;.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;%(AdditionalIncludeDirectories)</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;%(AdditionalIncludeDirectories)</IncludePath>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -151,28 +151,28 @@
     <ClInclude Include="filehelper.h" />
     <ClInclude Include="kong.h" />
     <QtMoc Include="LoginData.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files\Teledyne DALSA\Sapera\Include;C:\Program Files\Teledyne DALSA\Sapera\Classes\Basic;C:\Program Files\MVTec\HALCON-13.0\include;C:\Program Files\MVTec\HALCON-13.0\include\halconcpp;.\GeneratedFiles;.;D:\Qt\Qt5.6.0\5.6\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtCore;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtGui;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtANGLE;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtWidgets</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files\Teledyne DALSA\Sapera\Include;C:\Program Files\Teledyne DALSA\Sapera\Classes\Basic;C:\Program Files\MVTec\HALCON-13.0\include;C:\Program Files\MVTec\HALCON-13.0\include\halconcpp;.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets</IncludePath>
       <Define Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB</Define>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;D:\Qt\Qt5.6.0\5.6\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtCore;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtGui;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtANGLE;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtWidgets</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets</IncludePath>
       <Define Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB</Define>
     </QtMoc>
     <ClInclude Include="pathhelper.h" />
     <QtMoc Include="Calgorithm.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files\Teledyne DALSA\Sapera\Include;C:\Program Files\Teledyne DALSA\Sapera\Classes\Basic;C:\Program Files\MVTec\HALCON-13.0\include;C:\Program Files\MVTec\HALCON-13.0\include\halconcpp;.\GeneratedFiles;.;D:\Qt\Qt5.6.0\5.6\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtCore;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtGui;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtANGLE;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtWidgets</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files\Teledyne DALSA\Sapera\Include;C:\Program Files\Teledyne DALSA\Sapera\Classes\Basic;C:\Program Files\MVTec\HALCON-13.0\include;C:\Program Files\MVTec\HALCON-13.0\include\halconcpp;.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets</IncludePath>
       <Define Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB</Define>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;D:\Qt\Qt5.6.0\5.6\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtCore;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtGui;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtANGLE;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtWidgets</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets</IncludePath>
       <Define Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB</Define>
     </QtMoc>
     <QtMoc Include="Cconsole.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files\Teledyne DALSA\Sapera\Include;C:\Program Files\Teledyne DALSA\Sapera\Classes\Basic;C:\Program Files\MVTec\HALCON-13.0\include;C:\Program Files\MVTec\HALCON-13.0\include\halconcpp;.\GeneratedFiles;.;D:\Qt\Qt5.6.0\5.6\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtCore;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtGui;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtANGLE;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtWidgets</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files\Teledyne DALSA\Sapera\Include;C:\Program Files\Teledyne DALSA\Sapera\Classes\Basic;C:\Program Files\MVTec\HALCON-13.0\include;C:\Program Files\MVTec\HALCON-13.0\include\halconcpp;.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets</IncludePath>
       <Define Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB</Define>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;D:\Qt\Qt5.6.0\5.6\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtCore;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtGui;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtANGLE;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtWidgets</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets</IncludePath>
       <Define Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB</Define>
     </QtMoc>
     <QtMoc Include="Getsuanfa.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files\Teledyne DALSA\Sapera\Include;C:\Program Files\Teledyne DALSA\Sapera\Classes\Basic;C:\Program Files\MVTec\HALCON-13.0\include;C:\Program Files\MVTec\HALCON-13.0\include\halconcpp;.\GeneratedFiles;.;D:\Qt\Qt5.6.0\5.6\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtCore;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtGui;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtANGLE;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtWidgets</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files\Teledyne DALSA\Sapera\Include;C:\Program Files\Teledyne DALSA\Sapera\Classes\Basic;C:\Program Files\MVTec\HALCON-13.0\include;C:\Program Files\MVTec\HALCON-13.0\include\halconcpp;.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets</IncludePath>
       <Define Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB</Define>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;D:\Qt\Qt5.6.0\5.6\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtCore;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtGui;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtANGLE;D:\Qt\Qt5.6.0\5.6\msvc2015\include\QtWidgets</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets</IncludePath>
       <Define Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB</Define>
     </QtMoc>
     <ClInclude Include="helper.h" />
@@ -185,7 +185,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" MocOptions="" />
+      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_Win32="msvc2015" MocOptions="" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

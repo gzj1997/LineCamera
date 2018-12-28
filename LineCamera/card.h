@@ -21,7 +21,7 @@ public :
 	 static const unsigned short Solenoid2 = 6;
 	// static const unsigned short Solenoid3 = 0;
 	 static const unsigned short Out1 = 1;
-
+	 static  const unsigned short zhizhen = 1;
 	 static const int minspeed = 1000;
 	 static const int maxspeed = 20000;
 	 static const int  acc = 1;

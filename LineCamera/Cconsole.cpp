@@ -1,5 +1,6 @@
 #include "Cconsole.h"
 #include"DMC2210.h"
+#include<thread>
 Cconsole::Cconsole(QWidget *parent)
 	: QDialog(parent)
 {
@@ -115,8 +116,8 @@ void Cconsole::save_quit()
 }
 void Cconsole::saveccf(string name, double da)
 {
-	string str1 = (QDir::currentPath() + "/Data/12.ccf").toStdString();
-	string str2 = (QDir::currentPath() + "/Data/12-1.ccf").toStdString();
+	string str1 = (QDir::currentPath() + "/Data/11.ccf").toStdString();
+	string str2 = (QDir::currentPath() + "/Data/11-1.ccf").toStdString();
 	ifstream myfile(str1);
 	ofstream outfile(str2, ios::app);
 	string temp;
@@ -153,7 +154,12 @@ void Cconsole::saveccf(string name, double da)
 }
 void Cconsole::testqi()
 {
-	d2210_write_outbit(Card::Axis1, Card::chuiqizongkaiguan, Card::On);
+	int time = ui.PixelEdit->text().toDouble();
+	d2210_write_outbit(Card::Axis0, Card::chuiqizongkaiguan, Card::On);
+	//d2210_write_outbit(Card::Axis0, Card::chuiqizongkaiguan, Card::On);
+	this_thread::sleep_for(std::chrono::milliseconds(time));
+	//	qDebug() << d2210_get_encoder(1) << "zzzzzz" << d2210_get_encoder(0);
+	d2210_write_outbit(Card::Axis0, Card::chuiqizongkaiguan, Card::Off);
 }
 void Cconsole::returnmain()
 {

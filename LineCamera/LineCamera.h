@@ -33,9 +33,11 @@ public:
 	
 	HalconCpp::HObject image;
 	HalconCpp::HObject himage;
+	HalconCpp::HObject errorimage;
 	queue <HalconCpp::HObject> imagelist;
 	
-	
+	long errorx = 0, errory = 0;
+	int thesameerror = 0;
 	
 	void processimage();
 	void OnGrab();
@@ -55,6 +57,7 @@ public:
 	void * Lcamera;
 	//void* linecameraaddr;
 	void  sf_test(long x, long y);
+	bool  letitgo();
 private:	//к╫сп╠Да©	
 	BOOL DestroyObjects();
 	BOOL CreateObjects();
@@ -91,11 +94,15 @@ public:
 	int speed_heng;
 	int speed_zong;
 	long position;
+
+	
+
 	static void showlineimage(HalconCpp::HObject hv_image, LineCamera * lcamera);
 	void initail();
 	void readcamerasetting();
 	void LoadCameraResultToShowData();
 	void startrun();
+	void readtestpara();
 	void run();
 private:
 	Ui::LineCameraClass ui;

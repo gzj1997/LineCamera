@@ -3,14 +3,18 @@
 
 
 int currentPos;
-volatile bool falsenut = false;
-volatile long photox = 0;
-volatile long photoy = 0;
-
+ bool falsenut = false;
+ long photox = 0;
+ long photoy = 0;
+bool isfirst = true;
 int positiona = 4141;
 int positionb = 29000;
-
-
+int thr = 100;
+int  dth = 25;
+int areamin = 1500;
+int widthmin = 15000;
+int chuiqishijian = 1000;
+bool on_catch = false;
 LineCamera::LineCamera(QWidget *parent)
 	: QMainWindow(parent)
 {
@@ -57,6 +61,7 @@ void LineCamera::initail()
 	//	ui.gridLayout->setMargin(2);
 
 	readcamerasetting();
+	isfirst = true;
 	int card = d2210_board_init();
 	if (card == 0)
 	{
@@ -91,8 +96,8 @@ void LineCamera::initail()
 		int cut1 = d2210_get_encoder(Card::Axis1);
 		int cut = cut1;
 		while (cut < positiona) {
-			this_thread::sleep_for(std::chrono::milliseconds(300));
-			qDebug() << d2210_get_encoder(1) << "kkkkk";
+			this_thread::sleep_for(std::chrono::milliseconds(30));
+		//	qDebug() << d2210_get_encoder(1) << "kkkkk";
 			cut = d2210_get_encoder(Card::Axis1);
 		}
 		qDebug() << d2210_get_encoder(1);
@@ -107,7 +112,7 @@ void LineCamera::readcamerasetting()
 	Dp->readcameraset();
 	Dp->readposition();
 	cameras[0]->devicename = Dp->name;
-	cameras[0]->pixeldist = Dp->pixel;
+	chuiqishijian = Dp->pixel;
 	cameras[0]->exposuretime = Dp->expose;
 	cameras[0]->gain = Dp->gain;
 	cameras[0]->photowidth = Dp->photowidth;
@@ -198,15 +203,14 @@ void LineCamera::setAlgorithm()
 
 void LineCamera::startrun()
 {
-
+	on_catch = false;
+	d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::On);
 	cameras[0]->OnGrab();
 
 	d2210_set_pulse_outmode(Card::Axis0, 0);
 	d2210_write_SEVON_PIN(Card::Axis0, Card::On);
 	d2210_set_profile(Card::Axis0, Card::minspeed, speed_heng, Card::acc, Card::acc);
 	d2210_t_vmove(Card::Axis0, 0);
-
-	
 }
 
 
@@ -220,6 +224,7 @@ void LineCamera::run()
 		if (falsenut)
 		{
 			cameras[0]->OnFreeze();
+			d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::Off);
 			//轴0 抵达位置;
 			//d2210_imd_stop(Card::Axis0);
 			d2210_change_speed(Card::Axis0, speed_heng/2);
@@ -230,10 +235,10 @@ void LineCamera::run()
 			int kk = 0;
 			int zz=0;
 			while ((currentPos < photox + position || currentPosy <photoy )&& !(kk >0  && zz>0)) {
-				//this_thread::sleep_for(std::chrono::milliseconds(100));
+			//	this_thread::sleep_for(std::chrono::milliseconds(300));
 				currentPos = (int)d2210_get_encoder(Card::Axis0);
 				currentPosy = (int)d2210_get_encoder(Card::Axis1);
-				//qDebug() << currentPosy << "kkkkk"<< currentPos;
+			//	qDebug() << currentPosy << "kkkkk"<< currentPos;
 				//轴x到达
 				if (currentPos > photox + position)
 				{
@@ -248,102 +253,138 @@ void LineCamera::run()
 				}
 				
 			}
+
+			HalconCpp::DispObj(cameras[0]->errorimage, hv_WindowID);
+
 			d2210_imd_stop(Card::Axis0);
 			d2210_imd_stop(Card::Axis1);
-			qDebug() << zz << kk;
-		//	d2210_write_outbit(Card::Axis1, Card::chuiqizongkaiguan, Card::On);
-			this_thread::sleep_for(std::chrono::milliseconds(3000));
-			qDebug() << d2210_get_encoder(1) << "zzzzzz" << d2210_get_encoder(0);
-		//	d2210_write_outbit(Card::Axis1, Card::chuiqizongkaiguan, Card::Off);
+		
+		//	qDebug() << zz << kk;
+			d2210_write_outbit(Card::Axis0, Card::chuiqizongkaiguan, Card::On);
+			this_thread::sleep_for(std::chrono::milliseconds(1000));
+		//	qDebug() << d2210_get_encoder(1) << "zzzzzz" << d2210_get_encoder(0);
+			d2210_write_outbit(Card::Axis0, Card::chuiqizongkaiguan, Card::Off);
 			//轴0返回
 			d2210_set_profile(Card::Axis0, Card::minspeed, speed_heng, Card::acc, Card::acc);
 			d2210_t_vmove(Card::Axis0, 1);
 			d2210_t_vmove(Card::Axis1, 0);
 			currentPos = (int)d2210_get_encoder(Card::Axis0);
 			currentPosy = (int)d2210_get_encoder(Card::Axis1);
-			while (currentPos > photox -1000  || currentPosy >positiona) {
+			kk = 0;
+			zz = 0;
+			int kkk = d2210_axis_io_status(1);
+			while ((currentPos > photox -2000  || (kkk != 8192)) && !(kk >0 && zz>0)) {
 				currentPos = (int)d2210_get_encoder(Card::Axis0);
-				currentPosy = (int)d2210_get_encoder(Card::Axis1);
-				this_thread::sleep_for(std::chrono::milliseconds(100));
-				//qDebug() << d2210_get_encoder(1) << "zzzzzz" << d2210_get_encoder(0);
-				if (currentPos < photox -1000)
+				kkk = d2210_axis_io_status(1);
+			 //   this_thread::sleep_for(std::chrono::milliseconds(300));
+			//	qDebug() << d2210_get_encoder(1) << "zzzzzz" << d2210_get_encoder(0);
+				if (currentPos < photox -2000)
 				{
 					d2210_imd_stop(Card::Axis0);
+					kk ++;
 				}
 				//轴y到达
-				if (currentPosy <positiona)
+				if (kkk == 8192)
 				{
-					d2210_imd_stop(Card::Axis1);
-				//	d2210_set_encoder(Card::Axis1,4141);
+					d2210_set_encoder(Card::Axis1, 0);
+					zz ++;
 				}
+				
 			}
-			/*d2210_set_profile(Card::Axis0, Card::minspeed, speed_heng, Card::acc, Card::acc);
-			d2210_t_vmove(Card::Axis0, 0);*/
-			////d2210_t_line2(Card::Axis0, -photox +position+10000, Card::Axis1, -photoy, 0);
-			//while (d2210_check_done(Card::Axis0) == 0)
-			//{
-			//	std::this_thread::sleep_for(std::chrono::milliseconds(100));
-			////	printf("remove");
-			//}
 			//重启
 			startrun();
+			d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::On);
 			falsenut = false;
 		}
 	}
 }
+void LineCamera::readtestpara()
+{
+	QString dpath = QString::fromStdString(dataPath + "/Product/" + productname) + "/para.xml";
+	qDebug() << dpath;
+	QFile file(dpath);
+	if (!file.open(QFile::ReadOnly | QFile::Text)) {
+		qDebug() << dpath + "-----jj----";
+		return;
+	}
+	QXmlStreamReader reader(&file);
+
+	while (!reader.atEnd()) {
+		reader.readNext();
+		if (reader.isStartElement()) {
+			if (reader.name() == "thr")
+			{
+				thr = reader.attributes().value("thr").toInt();
+				qDebug() << thr;
+			}
+			if (reader.name() == "dth")
+			{
+				dth = reader.attributes().value("dth").toInt();
+			}
+			if (reader.name() == "area")
+			{
+				areamin = reader.attributes().value("area_min").toInt();
+				qDebug() << areamin;
+			//	para->area_max = reader.attributes().value("area_max").toInt();
+			}
+			if (reader.name() == "width")
+			{
+				widthmin = reader.attributes().value("width_min").toInt();
+			//	para->width_max = reader.attributes().value("width_max").toInt();
+			}
+		}
+	}
+	file.close();
+	if (reader.hasError()) {
+		std::cerr << "Error: Failed to parse file "
+			<< qPrintable(dpath) << ": "
+			<< qPrintable(reader.errorString()) << std::endl;
+	}
+	else if (file.error() != QFile::NoError) {
+		std::cerr << "Error: Cannot read file " << qPrintable(dpath)
+			<< ": " << qPrintable(file.errorString())
+			<< std::endl;
+	}
+}
+
 void LineCamera::btnopen()
 {
-	linkdevice();
-	d2210_set_position(Card::Axis0, 0);
-	
-	startrun();
-	
-	std::thread t(&LineCamera::run, this);
-	t.detach();
+	if (isfirst)
+	{
+		readtestpara();
+		linkdevice();
+		startrun();
+		d2210_set_position(Card::Axis0, 0);
+		std::thread t(&LineCamera::run, this);
+		t.detach();
+		isfirst = false;
+	}
+	else
+	{
+		startrun();
+	}
+
 }
 
 void LineCamera::showlineimage(HalconCpp::HObject hv_image, LineCamera* lcamera)
 {
-	/*string filename = "";
-	filename.append("C:/Users/Administrator/Desktop/tp/hh");
-	numxfer++;
-	stringstream stream;
-	stream << numxfer;
-	filename.append(stream.str());
-	filename.append(".bmp");
-	char* file = (char*)filename.data();
-	HalconCpp::WriteImage(hv_image, "bmp", 0, (HalconCpp::HTuple)file);*/
-
-	//if (lcamera->numm == 200)
-	//{
-	//	falsenut = true;
-	//	photox = -500;
-	//	photoy = 10;
-	//}
-		//	lcamera->cameras[0]->OnFreeze();
-		//}
-		//if (lcamera->numm % 2 == 1) {
-		////	lcamera->h_testimage = hv_image.Clone();
-		//	qDebug() << "WriteImage"<< lcamera->numm;
-		//	//HalconCpp::WriteImage(hv_image, "bmp", 0, "C:/Users/mxv/Desktop/tp/I2.bmp"); 
-		//	//HalconCpp::WriteImage(hv_image, "bmp", 0, "C:/Users/mxw/Desktop/tp/I2.bmp");
-		//}
 		if (lcamera->numm % 100 == 1) {
 			//	lcamera->h_testimage = hv_image.Clone();
 			qDebug() << "WriteImage" << lcamera->numm << "pos" << d2210_get_encoder(Card::Axis0);;
-			HalconCpp::WriteImage(hv_image, "bmp", 0, "C:/Users/mxv/Desktop/tp/I2.bmp"); 
+		//	HalconCpp::WriteImage(hv_image, "bmp", 0, "C:/Users/mxw/Desktop/tp/I2.bmp"); 
 		//	HalconCpp::WriteImage(hv_image, "bmp", 0, "C:/Users/mxw/Desktop/tp/I2.bmp");
 		}
 		lcamera->numm++;
 		HalconCpp::DispObj(hv_image, lcamera->hv_WindowID);
 
-	}
-
+}
 
 void LineCamera::btnclose()
 {
+	on_catch = false;
 	cameras[0]->OnFreeze();
 	QString aa;
+	d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::Off);
 	d2210_imd_stop(Card::Axis0);
 	d2210_imd_stop(Card::Axis1);
 	//d2210_board_close();
@@ -352,7 +393,9 @@ void LineCamera::btnclose()
 }
 void LineCamera::btnstop()
 {
+	on_catch = false;
 	d2210_imd_stop(Card::Axis0);
+	d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::Off);
 	//HalconCpp::CloseWindow(hv_WindowID);
 }
 
@@ -367,6 +410,7 @@ void LineCamera::showimage()
 		title, curPath, filter);
 	HalconCpp::ReadImage(&himage, (HalconCpp::HTuple)(imagename.toStdString().c_str()));
 	HalconCpp::DispObj(himage, hv_WindowID);
+	h_testimage = himage;
 	//MainWndID = (Hlong)this->ui.label->winId();
 	//HDevWindowStack::Push(hv_WindowID);
 	//if (HDevWindowStack::IsOpen())
@@ -422,11 +466,12 @@ void LineCamera::showimage()
 
 void LineCamera::linkdevice()
 {
-	cameras[0]->Link();
-	QString a = "";
-	a.append(cameras[0]->serverName);
-	a.append(cameras[0]->resourceName);
-	ui.lineEdit->setText(a);
+	
+		cameras[0]->Link();
+		QString a = "";
+		a.append(cameras[0]->serverName);
+		a.append(cameras[0]->resourceName);
+		ui.lineEdit->setText(a);
 }
 void LineCamera::test()
 {
@@ -496,6 +541,7 @@ bool Camera::Link()
 {
 	int serverIndex = 0;
 	serverCount = SapManager::GetServerCount();
+	qDebug() << serverCount;
 	for (; serverIndex < serverCount; serverIndex++)
 	{
 		if (SapManager::GetResourceCount(serverIndex, SapManager::ResourceAcqDevice) != 0)
@@ -512,14 +558,14 @@ bool Camera::Link()
 			SapManager::GetResourceName(serverName, SapManager::ResourceAcqDevice, i, resourceName, sizeof(resourceName));
 			pLocLft = new SapLocation(serverName, i);
 			//	m_AcqDevice = new  SapAcqDevice(*pLocLft, "C:/Users/Administrator/Desktop/c++/defualt.ccf");
-			string str = (QDir::currentPath() + "/Data/12.ccf").toStdString();
+			string str = (QDir::currentPath() + "/Data/11.ccf").toStdString();
 			ccfpath = str.c_str();
 		//	qDebug() << ccfpath << "ddddddddd";
 		//	m_AcqDevice = new  SapAcqDevice(*pLocLft,"C:/Users/mxw/Desktop/LineCamera/LineCamera/Data/12.ccf");
 			m_AcqDevice = new  SapAcqDevice(*pLocLft, ccfpath);
 			//	m_AcqDevice->SetParameter(1, 1);
 			m_Buffers = new SapBufferWithTrash(2, m_AcqDevice);
-		//	m_Buffers->SetWidth(1024);
+		//	m_Buffers->SetWidth(1024);                                                           
 			//	m_View =new SapView(m_Buffers);
 			m_Xfer = new SapAcqDeviceToBuf(m_AcqDevice, m_Buffers, XferCallbackLft, this);
 
@@ -613,104 +659,139 @@ void LineCamera::getb()
 
 void Camera::processimage()
 {
-	/*string filename = "";
-	filename.append("C:/Users/Administrator/Desktop/tp/new");
-	numxfer++;
-	stringstream stream;
-	stream << numxfer;
-	filename.append(stream.str());
-	filename.append(".bmp");
-	char* file = (char*)filename.data();
-	HalconCpp::WriteImage(imagelist.front(), "bmp", 0, (HalconCpp::HTuple)file);*/
-	//	(LineCamera *)linecameraaddr->
-	//LineCamera *a = (LineCamera*)Lcamera;
-
-	HObject ho_Image = imagelist.front();
-	/*if (ho_Image.IsInitialized())
-	{
-		qDebug() << "IsInitialized";
-	}*/
-	HObject   ho_Region, ho_RegionFillUp;
-	HObject  ho_RegionDifference, ho_ConnectedRegions, ho_SelectedRegions;
-	HObject  ho_SortedRegions, ho_ObjectSelected;
-
-	// Local control variables
-	HTuple  hv_thr, hv_zxmj, hv_zxck, hv_r, hv_c;
-	HTuple  hv_area, hv_Number, hv_Area, hv_Row, hv_Column;
-	HTuple  hv_Area1, hv_Row1, hv_Column1;
 	try {
 
 
-		hv_thr = 128;
-		hv_zxmj = area;
-		hv_zxck = widthheight;
+		HObject  ho_Image, ho_Region, ho_ImageMean, ho_RegionDynThresh;
+		HObject  ho_RegionUnion, ho_ConnectedRegions, ho_SelectedRegions;
+		HObject  ho_SortedRegions, ho_ObjectSelected;
+
+		// Local control variables
+		HTuple  hv_thr, hv_th, hv_dth, hv_zxmj, hv_zxck;
+		HTuple  hv_r, hv_c, hv_area, hv_Number, hv_Area, hv_Row;
+		HTuple  hv_Column;
+		ho_Image = imagelist.front();
+		himage = ho_Image;
+		if (!himage.IsInitialized())
+		{
+			qDebug() << "no image";
+			return;
+		}
+
+
+		hv_thr = thr;
+		hv_th = thr;
+		hv_dth = dth;
+		hv_zxmj = areamin;
+		hv_zxck = widthmin;
+		hv_thr = 30;
+		hv_th = 25;
+		hv_dth = 35;
 		hv_r = 0;
 		hv_c = 0;
 		hv_area = 0;
-		Threshold(ho_Image, &ho_Region, hv_thr, 255);
-		FillUp(ho_Region, &ho_RegionFillUp);
-		Difference(ho_RegionFillUp, ho_Region, &ho_RegionDifference);
-		Connection(ho_RegionDifference, &ho_ConnectedRegions);
-		
+
+		Threshold(ho_Image, &ho_Region, 0, hv_thr);
+		MeanImage(ho_Image, &ho_ImageMean, hv_th, hv_th);
+		DynThreshold(ho_Image, ho_ImageMean, &ho_RegionDynThresh, hv_dth, "dark");
+		Union2(ho_Region, ho_RegionDynThresh, &ho_RegionUnion);
+		Connection(ho_RegionUnion, &ho_ConnectedRegions);
 		SelectShape(ho_ConnectedRegions, &ho_SelectedRegions, ((HTuple("area").Append("height")).Append("width")),
 			"or", (hv_zxmj.TupleConcat(hv_zxck)).TupleConcat(hv_zxck), ((HTuple(99999000).Append(9999999)).Append(9999999)));
-		
-		
 		CountObj(ho_SelectedRegions, &hv_Number);
-		
-		if (hv_Number == 0)
+		if (0 != (hv_Number == 0))
 		{
 			hv_r = 0;
 			hv_c = 0;
 			hv_area = 0;
 		}
-		else if (hv_Number == 1)
+		else if (0 != (hv_Number == 1))
 		{
 			AreaCenter(ho_SelectedRegions, &hv_Area, &hv_Row, &hv_Column);
 			hv_r = hv_Row;
 			hv_c = hv_Column;
 			hv_area = hv_Area;
 		}
-		else if (hv_Number > 1)
+		else if (0 != (hv_Number>1))
 		{
 			SortRegion(ho_SelectedRegions, &ho_SortedRegions, "upper_right", "false", "column");
 			SelectObj(ho_SortedRegions, &ho_ObjectSelected, 1);
-			AreaCenter(ho_ObjectSelected, &hv_Area1, &hv_Row1, &hv_Column1);
-			hv_r = hv_Row1;
-			hv_c = hv_Column1;
-			hv_area = hv_Area1;
+			AreaCenter(ho_ObjectSelected, &hv_Area, &hv_Row, &hv_Column);
+			hv_r = hv_Row;
+			hv_c = hv_Column;
+			hv_area = hv_Area;
 		}
-		if (hv_Number >0 )
+		if (hv_Number > 0)
 		{
-			sf_test((long)hv_Row1, (long)hv_Column1);
-			qDebug() << "sf_test"<< (long)hv_Row1<< (long)hv_Column1;
+			long x = (long)hv_r[0].D();
+			long y = 4096-(long)hv_c[0].D();
+			HalconCpp::WriteImage(himage, "bmp", 0, "C:/Users/mxw/Desktop/tp/I2.bmp");
+			qDebug() << x << y << "area" << (long)hv_area[0].D();
+			
+			
+			sf_test(x, y);
+			
 		}
-		//qDebug() << "sf_test";
-		xxxx++;
-		if (xxxx == 200)
-		{
-			sf_test((long)hv_r, (long)hv_Column);
-		}
+		//xxxx++;
+		//if (xxxx == 200)
+		//{
+		//	sf_test((long)hv_r, (long)hv_Column);
+		//}
 	}
 	catch(exception e){
-	
-		
-
-
 	}
 	LineCamera::showlineimage(imagelist.front(),(LineCamera*)Lcamera);
 	//GetCallBack( imagelist.front());
 	imagelist.pop();
-
 }
 
 void Camera::sf_test(long x, long y)
 {
-	falsenut = true;
-	photox = d2210_get_encoder(Card::Axis0) - (long)(x / 2);
+	if (on_catch)
+	{
+		return;
+	}
+	
+	photox = d2210_get_encoder(Card::Axis0) + (long)(x/2 );
 	double yy = y;
 	yy = (yy / 4096) * positionb + positiona;
 	photoy = (long)yy;
+	qDebug() << photox << photoy;
+	if (letitgo())
+	{
+		falsenut = true;
+		errorimage = himage;
+		on_catch = true;
+	}
+	
+}
+
+
+bool Camera::letitgo()
+{
+
+	if ( abs(photoy- errory ) <300 && abs(photox - errorx)<50 )
+	{
+		thesameerror++;
+	}
+	else
+	{
+		thesameerror = 0;
+	}
+
+	if (thesameerror >3)
+	{
+		qDebug() << "let it go";
+		thesameerror = 0;
+		return false;
+	}
+	else
+	{
+		errory = photoy;
+		errorx = photox;
+		return true;
+	}
+	return true;
 }
 void Camera::OnGrab()
 {

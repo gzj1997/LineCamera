@@ -1,9 +1,9 @@
 <转盘>
     <位置>
-        <Position Posb="29000" Posa="4141" Pos="15000"/>
+        <Position Posa="3447" Pos="15870" Posb="23081"/>
     </位置>
     <速度>
-        <Speed speed_zong="21750" speed_heng="43672"/>
+        <Speed speed_heng="43732" speed_zong="63732"/>
     </速度>
     <相机电磁阀点>
         <Out IO="1"/>

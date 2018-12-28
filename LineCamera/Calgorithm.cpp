@@ -8,6 +8,7 @@ Calgorithm::Calgorithm(QWidget *parent)
 	ui.setupUi(this);
 	MainWndID = (Hlong)this->ui.label->winId();
 	OpenWindow(0, 0, 681, 141, MainWndID, "visible", "", &hv_WindowID);
+	qDebug() << "---------";
 	initial();
 }
 
@@ -34,9 +35,8 @@ void Calgorithm::initial()
 	ui.radioButton->setChecked(true);
 
 	para = new Para();
-
+	showlist = new ShowList();
 	para->dth = 25;
-
 	QTableWidgetItem *aItem;
 	aItem = new QTableWidgetItem(QString("×Ö·ûÄÚÈÝ"));
 	
@@ -82,18 +82,18 @@ void Calgorithm::readpara()
 		 QString dpath = QString::fromStdString(allpath) + "/para.xml";
 		 QFile file(dpath);
 		 if (!file.open(QFile::ReadOnly | QFile::Text)) {
-			 std::cerr << "Error: Cannot read file " << qPrintable(dpath)
-				 << ": " << qPrintable(file.errorString())
-				 << std::endl;
+			 qDebug() << dpath+"-----jj----";
 			 return;
 		 }
 		 QXmlStreamReader reader(&file);
+
 		 while (!reader.atEnd()) {
 			 reader.readNext();
 			 if (reader.isStartElement()) {
 				 if (reader.name() == "thr")
 				 {
 					 para->thr = reader.attributes().value("thr").toInt();
+					 qDebug() << para->thr;
 				 }
 				 if (reader.name() == "dth")
 				 {
@@ -159,7 +159,7 @@ void Calgorithm::savepara()
 	QXmlStreamWriter xmlWriter(&file);
 	xmlWriter.setAutoFormatting(true);
 	xmlWriter.writeStartDocument();
-
+	xmlWriter.writeStartElement("para");
 	xmlWriter.writeStartElement("thr");
 	xmlWriter.writeAttribute("thr", QString::number(para->thr));
 	xmlWriter.writeEndElement();
@@ -173,6 +173,7 @@ void Calgorithm::savepara()
 	xmlWriter.writeStartElement("width");
 	xmlWriter.writeAttribute("width_min", QString::number(para ->width_min ));
 	xmlWriter.writeAttribute("width_max", QString::number(para ->width_max ));
+	xmlWriter.writeEndElement();
 	xmlWriter.writeEndElement();
 	xmlWriter.writeEndDocument();
 
@@ -199,7 +200,10 @@ void Calgorithm::Getscrollnum()
 }
 void Calgorithm::returnmain()
 {
+	savepara();
+
 	emit sendsignal();
+
 	this->close();
 }
 void Calgorithm::suanfa()
@@ -226,13 +230,15 @@ void Calgorithm::sinitial()
 
 void Calgorithm::sdetect()
 {
-	HalconCpp::HObject   ho_Image, ho_ImageMean, ho_RegionDynThresh;
-	HalconCpp::HObject   ho_ConnectedRegions, ho_SelectedRegions, ho_SortedRegions;
-	HalconCpp::HObject   ho_ObjectSelected;
+
+	HalconCpp::HObject  ho_Image, ho_ImageMean, ho_RegionDynThresh;
+	HalconCpp::HObject  ho_ConnectedRegions, ho_SelectedRegions, ho_SortedRegions;
+	HalconCpp::HObject  ho_ObjectSelected;
 
 	// Local control variables
 	HalconCpp::HTuple  hv_thr, hv_dth, hv_zxmj, hv_zxck, hv_r;
-	HalconCpp::HTuple  hv_c, hv_area, hv_Number, hv_Area, hv_Row, hv_Column;
+	HalconCpp::HTuple  hv_c, hv_area, hv_Area1, hv_Row1, hv_Column1, hv_a;
+	HalconCpp::HTuple  hv_Number, hv_Area, hv_Row, hv_Column;
 	ho_Image = himage;
 	if (!himage.IsInitialized())
 	{
@@ -243,6 +249,7 @@ void Calgorithm::sdetect()
 	hv_dth = para->dth;
 	hv_zxmj = para->area_min;
 	hv_zxck = para->width_min;
+	qDebug() << para->area_min << para->thr;
 	hv_r = 0;
 	hv_c = 0;
 	hv_area = 0;
@@ -253,11 +260,7 @@ void Calgorithm::sdetect()
 	SelectShape(ho_ConnectedRegions, &ho_SelectedRegions, ((HalconCpp::HTuple("area").Append("height")).Append("width")),
 		"or", (hv_zxmj.TupleConcat(hv_zxck)).TupleConcat(hv_zxck), ((HalconCpp::HTuple(999999).Append(9999999)).Append(9999999)));
 	CountObj(ho_SelectedRegions, &hv_Number);
-
-	if (hv_Number >0)
-	{
-		HalconCpp::DispObj(ho_SelectedRegions, hv_WindowID);
-	}
+	showlist->num = hv_Number;
 	if (0 != (hv_Number == 0))
 	{
 		hv_r = 0;
@@ -280,13 +283,37 @@ void Calgorithm::sdetect()
 		hv_c = hv_Column;
 		hv_area = hv_Area;
 	}
-
-
+	if (hv_Number >0)
+	{
+		AreaCenter(ho_SelectedRegions, &hv_Area1, &hv_Row1, &hv_Column1);
+		HalconCpp::DispObj(ho_SelectedRegions, hv_WindowID);
+		resultimage = ho_SelectedRegions;
+		for (int  i = 0; i < (int)hv_Number; i++)
+		{
+			Result* aa = new Result() ;
+			aa->x = (int)((const HalconCpp::HTuple&)hv_Row1)[i].D();
+			aa->y = (int)((const HalconCpp::HTuple&)hv_Column1)[i].D();
+			aa->area = (int)((const HalconCpp::HTuple&)hv_Area1)[i].D();
+			showlist->result.push_back(*aa);
+		}
+	}
 }
 
 void Calgorithm::ssaveresult()
 {
-	savepara();
+	if (showlist->num == 0)
+	{
+		ui.textEdit->setText("no spot");
+	}
+	else 
+	{
+		ui.textEdit->setText("spot number is "+QString::number(showlist->num));
+		list<Result>::iterator i;
+		for ( i = showlist->result.begin(); i !=showlist->result.end(); i++)
+		{
+			ui.textEdit->append("x:"+ QString::number( (*i).x )+"\ty:"+ QString::number((*i).y)+"\tarea:"+ QString::number((*i).area));
+		}
+	}
 }
 
 void Calgorithm::readimage()
@@ -304,7 +331,11 @@ void Calgorithm::saveimage()
 {
 	string a = allpath;
 	a += "/test.bmp";
-	HalconCpp::WriteImage(himage,"bmp",0,a.c_str());
+	if (resultimage.IsInitialized())
+	{
+		HalconCpp::WriteImage(resultimage, "bmp", 0, a.c_str());
+	}
+
 }
 
 void Calgorithm::getcell(int x, int y)
