@@ -126,6 +126,7 @@
     <ClCompile Include="LineCamera.cpp" />
     <ClCompile Include="LoginData.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Pathhelper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="LineCamera.h">

@@ -8,12 +8,7 @@
 #define PATH_DELIMITER '\\'
 
 using namespace std;
-static string exepath;
-static string productPath;
 static vector<QString> productNames;
-static string  dataPath;
-static string  productname;
-
 class PathHelper
 {
 public:
@@ -24,11 +19,19 @@ public:
 	 ~PathHelper()
 	 {
 	 }
+
+	 static string exepath;
+	 static string productPath;
+	 
+	 static string  dataPath;
+	 static string  productname;
+
 	  static void  initial()
 	 {
 		  exepath = QDir::currentPath().toStdString();
 		  dataPath = exepath + "/Data";
 		  productPath = dataPath + "/Product";
+		  
 		 // qDebug() << QString::fromStdString(productPath);
 	 }
 	  static bool newproduct(QString ProductName)

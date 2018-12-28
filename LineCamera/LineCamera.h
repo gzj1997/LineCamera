@@ -15,6 +15,8 @@
 #include"datahelper.h"
 #include<thread>
 #include<qdir.h>
+#include <QMenu>
+#include <QCursor>
 #define NAME_LENGTH  30
 using namespace HalconCpp;
 
@@ -104,8 +106,10 @@ public:
 	void startrun();
 	void readtestpara();
 	void run();
+	void contextMenuEvent(QContextMenuEvent *);
 private:
 	Ui::LineCameraClass ui;
+	QAction* saveimage;
 	private slots:
 	void setAlgorithm();
 	void setconsole();
@@ -120,6 +124,7 @@ private:
 	void test();
 	void geta();
 	void getb();
+	void ADDChange();
 
 };
 
