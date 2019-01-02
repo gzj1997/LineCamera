@@ -5,6 +5,8 @@
 #include<qdebug.h>
 #include <io.h>
 #include <direct.h>
+#include<ctime>
+#include <windows.h>
 #define PATH_DELIMITER '\\'
 
 using namespace std;
@@ -25,7 +27,11 @@ public:
 	 
 	 static string  dataPath;
 	 static string  productname;
-
+	 static QString  errorimagepath;
+	 static void setproductname(QString name) {
+		 PathHelper::initial();
+		 productname = name.toStdString();
+	 }
 	  static void  initial()
 	 {
 		  exepath = QDir::currentPath().toStdString();
@@ -34,6 +40,7 @@ public:
 		  
 		 // qDebug() << QString::fromStdString(productPath);
 	 }
+	  static bool newimagepath();
 	  static bool newproduct(QString ProductName)
 	  {
 		  PathHelper::initial();

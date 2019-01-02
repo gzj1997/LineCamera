@@ -50,8 +50,9 @@ void LoginData::newproduct()
 void LoginData::getproductname()
 {
 	PathHelper::initial();
-//	Pname =  ui.comboBox->currentText().toStdString();
+	PathHelper::setproductname( ui.comboBox->currentText());
 	this->accept();
+
 	//Sdatapath1 = (QDir::currentPath() + "/data").toStdString();
 	//Sproduct = productname;
 	//emit sendsignal();

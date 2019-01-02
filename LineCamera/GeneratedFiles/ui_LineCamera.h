@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -36,6 +37,10 @@ public:
     QWidget *verticalLayoutWidget_2;
     QVBoxLayout *verticalLayout_5;
     QHBoxLayout *horizontalLayout_2;
+    QLabel *label_9;
+    QComboBox *comboBox;
+    QSpacerItem *horizontalSpacer_3;
+    QPushButton *pushButton_10;
     QLabel *label_4;
     QLineEdit *lineEdit_4;
     QLabel *label_5;
@@ -45,10 +50,10 @@ public:
     QLabel *label_7;
     QLineEdit *lineEdit;
     QGridLayout *gridLayout;
-    QPushButton *pushButton_5;
-    QPushButton *pushButton_2;
     QPushButton *pushButton_4;
     QPushButton *pushButton_3;
+    QPushButton *pushButton_5;
+    QPushButton *pushButton_2;
     QPushButton *pushButton_6;
     QPushButton *pushButton_7;
     QPushButton *pushButton_8;
@@ -70,15 +75,22 @@ public:
     {
         if (LineCameraClass->objectName().isEmpty())
             LineCameraClass->setObjectName(QStringLiteral("LineCameraClass"));
-        LineCameraClass->resize(717, 529);
+        LineCameraClass->resize(1330, 752);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/LineCamera/Resources/\345\205\254\345\217\270LOG.jpg"), QSize(), QIcon::Normal, QIcon::Off);
         LineCameraClass->setWindowIcon(icon);
         centralWidget = new QWidget(LineCameraClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        QFont font;
+        font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
+        font.setPointSize(14);
+        font.setBold(true);
+        font.setItalic(false);
+        font.setWeight(75);
+        centralWidget->setFont(font);
         verticalLayoutWidget_2 = new QWidget(centralWidget);
         verticalLayoutWidget_2->setObjectName(QStringLiteral("verticalLayoutWidget_2"));
-        verticalLayoutWidget_2->setGeometry(QRect(10, 220, 700, 250));
+        verticalLayoutWidget_2->setGeometry(QRect(10, 470, 1311, 231));
         verticalLayout_5 = new QVBoxLayout(verticalLayoutWidget_2);
         verticalLayout_5->setSpacing(6);
         verticalLayout_5->setContentsMargins(11, 11, 11, 11);
@@ -89,6 +101,32 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setSizeConstraint(QLayout::SetDefaultConstraint);
         horizontalLayout_2->setContentsMargins(0, -1, -1, -1);
+        label_9 = new QLabel(verticalLayoutWidget_2);
+        label_9->setObjectName(QStringLiteral("label_9"));
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
+        font1.setPointSize(18);
+        font1.setBold(true);
+        font1.setWeight(75);
+        label_9->setFont(font1);
+
+        horizontalLayout_2->addWidget(label_9);
+
+        comboBox = new QComboBox(verticalLayoutWidget_2);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
+        comboBox->setFont(font1);
+
+        horizontalLayout_2->addWidget(comboBox);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_3);
+
+        pushButton_10 = new QPushButton(verticalLayoutWidget_2);
+        pushButton_10->setObjectName(QStringLiteral("pushButton_10"));
+
+        horizontalLayout_2->addWidget(pushButton_10);
+
         label_4 = new QLabel(verticalLayoutWidget_2);
         label_4->setObjectName(QStringLiteral("label_4"));
 
@@ -136,16 +174,6 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, -1, -1, -1);
-        pushButton_5 = new QPushButton(verticalLayoutWidget_2);
-        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
-
-        gridLayout->addWidget(pushButton_5, 1, 1, 1, 1);
-
-        pushButton_2 = new QPushButton(verticalLayoutWidget_2);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-
-        gridLayout->addWidget(pushButton_2, 0, 1, 1, 1);
-
         pushButton_4 = new QPushButton(verticalLayoutWidget_2);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
 
@@ -155,6 +183,16 @@ public:
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
 
         gridLayout->addWidget(pushButton_3, 0, 2, 1, 1);
+
+        pushButton_5 = new QPushButton(verticalLayoutWidget_2);
+        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+
+        gridLayout->addWidget(pushButton_5, 1, 1, 1, 1);
+
+        pushButton_2 = new QPushButton(verticalLayoutWidget_2);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+
+        gridLayout->addWidget(pushButton_2, 0, 1, 1, 1);
 
         pushButton_6 = new QPushButton(verticalLayoutWidget_2);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
@@ -186,7 +224,7 @@ public:
 
         horizontalLayoutWidget = new QWidget(centralWidget);
         horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(10, 10, 701, 31));
+        horizontalLayoutWidget->setGeometry(QRect(10, 10, 1311, 101));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setSpacing(16);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
@@ -195,6 +233,13 @@ public:
         label_3 = new QLabel(horizontalLayoutWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setEnabled(true);
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
+        font2.setPointSize(18);
+        font2.setBold(true);
+        font2.setItalic(false);
+        font2.setWeight(75);
+        label_3->setFont(font2);
 
         horizontalLayout->addWidget(label_3);
 
@@ -218,11 +263,11 @@ public:
 
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(20, 60, 681, 141));
+        label->setGeometry(QRect(10, 120, 1301, 331));
         LineCameraClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(LineCameraClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 717, 23));
+        menuBar->setGeometry(QRect(0, 0, 1330, 23));
         LineCameraClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(LineCameraClass);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -255,6 +300,8 @@ public:
         QObject::connect(pushButton_9, SIGNAL(clicked()), LineCameraClass, SLOT(test()));
         QObject::connect(lineEdit_4, SIGNAL(editingFinished()), LineCameraClass, SLOT(geta()));
         QObject::connect(lineEdit_3, SIGNAL(editingFinished()), LineCameraClass, SLOT(getb()));
+        QObject::connect(comboBox, SIGNAL(currentIndexChanged(int)), LineCameraClass, SLOT(getmodel(int)));
+        QObject::connect(pushButton_10, SIGNAL(clicked()), LineCameraClass, SLOT(forceGo()));
 
         QMetaObject::connectSlotsByName(LineCameraClass);
     } // setupUi
@@ -262,14 +309,16 @@ public:
     void retranslateUi(QMainWindow *LineCameraClass)
     {
         LineCameraClass->setWindowTitle(QApplication::translate("LineCameraClass", "LineCamera", 0));
-        label_4->setText(QApplication::translate("LineCameraClass", "<html><head/><body><p><span style=\" font-size:11pt; font-weight:600;\">\344\270\212\351\231\220\357\274\232</span></p></body></html>", 0));
-        label_5->setText(QApplication::translate("LineCameraClass", "<html><head/><body><p><span style=\" font-size:11pt; font-weight:600;\">\344\270\213\351\231\220</span></p></body></html>", 0));
+        label_9->setText(QApplication::translate("LineCameraClass", "   \346\250\241\345\274\217", 0));
+        pushButton_10->setText(QApplication::translate("LineCameraClass", "\350\277\207", 0));
+        label_4->setText(QApplication::translate("LineCameraClass", "<html><head/><body><p><span style=\" font-size:11pt;\">\344\270\212\351\231\220x\357\274\232</span></p></body></html>", 0));
+        label_5->setText(QApplication::translate("LineCameraClass", "<html><head/><body><p><span style=\" font-size:11pt;\">\344\270\213\351\231\220y:</span></p></body></html>", 0));
         label_6->setText(QApplication::translate("LineCameraClass", "<html><head/><body><p><span style=\" font-size:11pt; font-weight:600;\">\346\265\213\351\207\217\345\200\274\357\274\232</span></p></body></html>", 0));
         label_7->setText(QApplication::translate("LineCameraClass", "device", 0));
-        pushButton_5->setText(QApplication::translate("LineCameraClass", "link", 0));
-        pushButton_2->setText(QApplication::translate("LineCameraClass", "\346\232\202\345\201\234", 0));
         pushButton_4->setText(QApplication::translate("LineCameraClass", "show", 0));
         pushButton_3->setText(QApplication::translate("LineCameraClass", "\345\201\234\346\255\242\346\243\200\346\265\213", 0));
+        pushButton_5->setText(QApplication::translate("LineCameraClass", "link", 0));
+        pushButton_2->setText(QApplication::translate("LineCameraClass", "\346\232\202\345\201\234", 0));
         pushButton_6->setText(QApplication::translate("LineCameraClass", "\347\256\227\346\263\225\350\256\276\345\256\232", 0));
         pushButton_7->setText(QApplication::translate("LineCameraClass", "\350\277\220\345\212\250\350\256\276\345\256\232", 0));
         pushButton_8->setText(QApplication::translate("LineCameraClass", "Login", 0));

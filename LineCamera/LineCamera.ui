@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>717</width>
-    <height>529</height>
+    <width>1330</width>
+    <height>752</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,18 +18,27 @@
     <normaloff>:/LineCamera/Resources/公司LOG.jpg</normaloff>:/LineCamera/Resources/公司LOG.jpg</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="font">
+    <font>
+     <family>楷体</family>
+     <pointsize>14</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>220</y>
-      <width>700</width>
-      <height>250</height>
+      <y>470</y>
+      <width>1311</width>
+      <height>231</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_5">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0,0,0,0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0,0,0">
        <property name="spacing">
         <number>5</number>
        </property>
@@ -40,9 +49,56 @@
         <number>0</number>
        </property>
        <item>
+        <widget class="QLabel" name="label_9">
+         <property name="font">
+          <font>
+           <family>楷体</family>
+           <pointsize>18</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>   模式</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBox">
+         <property name="font">
+          <font>
+           <family>楷体</family>
+           <pointsize>18</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_10">
+         <property name="text">
+          <string>过</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QLabel" name="label_4">
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;上限：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;上限x：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
@@ -52,7 +108,7 @@
        <item>
         <widget class="QLabel" name="label_5">
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;下限&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;下限y:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
@@ -86,20 +142,6 @@
        <property name="leftMargin">
         <number>0</number>
        </property>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="pushButton_5">
-         <property name="text">
-          <string>link</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QPushButton" name="pushButton_2">
-         <property name="text">
-          <string>暂停</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="0">
         <widget class="QPushButton" name="pushButton_4">
          <property name="text">
@@ -111,6 +153,20 @@
         <widget class="QPushButton" name="pushButton_3">
          <property name="text">
           <string>停止检测</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pushButton_5">
+         <property name="text">
+          <string>link</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string>暂停</string>
          </property>
         </widget>
        </item>
@@ -158,8 +214,8 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>701</width>
-      <height>31</height>
+      <width>1311</width>
+      <height>101</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -170,6 +226,15 @@
       <widget class="QLabel" name="label_3">
        <property name="enabled">
         <bool>true</bool>
+       </property>
+       <property name="font">
+        <font>
+         <family>楷体</family>
+         <pointsize>18</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="text">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;颗粒物杂质光学检查机&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -221,10 +286,10 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>60</y>
-      <width>681</width>
-      <height>141</height>
+      <x>10</x>
+      <y>120</y>
+      <width>1301</width>
+      <height>331</height>
      </rect>
     </property>
     <property name="text">
@@ -237,7 +302,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>717</width>
+     <width>1330</width>
      <height>23</height>
     </rect>
    </property>
@@ -279,8 +344,8 @@
    <slot>showimage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>30</x>
-     <y>453</y>
+     <x>32</x>
+     <y>666</y>
     </hint>
     <hint type="destinationlabel">
      <x>484</x>
@@ -295,8 +360,8 @@
    <slot>btnopen()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>176</x>
-     <y>415</y>
+     <x>178</x>
+     <y>629</y>
     </hint>
     <hint type="destinationlabel">
      <x>199</x>
@@ -311,8 +376,8 @@
    <slot>btnstop()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>473</x>
-     <y>415</y>
+     <x>880</x>
+     <y>629</y>
     </hint>
     <hint type="destinationlabel">
      <x>377</x>
@@ -327,8 +392,8 @@
    <slot>btnclose()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>707</x>
-     <y>415</y>
+     <x>1318</x>
+     <y>629</y>
     </hint>
     <hint type="destinationlabel">
      <x>495</x>
@@ -343,8 +408,8 @@
    <slot>linkdevice()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>473</x>
-     <y>453</y>
+     <x>880</x>
+     <y>666</y>
     </hint>
     <hint type="destinationlabel">
      <x>320</x>
@@ -359,8 +424,8 @@
    <slot>setAlgorithm()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>152</x>
-     <y>491</y>
+     <x>154</x>
+     <y>724</y>
     </hint>
     <hint type="destinationlabel">
      <x>82</x>
@@ -375,8 +440,8 @@
    <slot>setconsole()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>473</x>
-     <y>491</y>
+     <x>880</x>
+     <y>724</y>
     </hint>
     <hint type="destinationlabel">
      <x>387</x>
@@ -391,8 +456,8 @@
    <slot>getproduct()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>611</x>
-     <y>443</y>
+     <x>1318</x>
+     <y>666</y>
     </hint>
     <hint type="destinationlabel">
      <x>553</x>
@@ -407,8 +472,8 @@
    <slot>test()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>621</x>
-     <y>482</y>
+     <x>1318</x>
+     <y>715</y>
     </hint>
     <hint type="destinationlabel">
      <x>598</x>
@@ -423,8 +488,8 @@
    <slot>geta()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>105</x>
-     <y>313</y>
+     <x>412</x>
+     <y>549</y>
     </hint>
     <hint type="destinationlabel">
      <x>89</x>
@@ -439,12 +504,44 @@
    <slot>getb()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>270</x>
-     <y>308</y>
+     <x>771</x>
+     <y>549</y>
     </hint>
     <hint type="destinationlabel">
      <x>247</x>
      <y>277</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>LineCameraClass</receiver>
+   <slot>getmodel(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>115</x>
+     <y>555</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>21</x>
+     <y>494</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_10</sender>
+   <signal>clicked()</signal>
+   <receiver>LineCameraClass</receiver>
+   <slot>forceGo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>252</x>
+     <y>563</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>3</x>
+     <y>557</y>
     </hint>
    </hints>
   </connection>
@@ -461,5 +558,7 @@
   <slot>test()</slot>
   <slot>geta()</slot>
   <slot>getb()</slot>
+  <slot>getmodel(int)</slot>
+  <slot>forceGo()</slot>
  </slots>
 </ui>

@@ -9,6 +9,7 @@
 #include"Cconsole.h"
 #include<qdebug.h>
 #include"DMC2210.h"
+#include"nut.h"
 #include<qmessagebox.h>
 #include"LoginData.h"
 #include<qxmlstream.h>
@@ -40,7 +41,7 @@ public:
 	
 	long errorx = 0, errory = 0;
 	int thesameerror = 0;
-	
+	bool isshow = true;
 	void processimage();
 	void OnGrab();
 	void OnFreeze();
@@ -59,6 +60,7 @@ public:
 	void * Lcamera;
 	//void* linecameraaddr;
 	void  sf_test(long x, long y);
+
 	bool  letitgo();
 private:	//к╫сп╠Да©	
 	BOOL DestroyObjects();
@@ -87,6 +89,8 @@ public:
 	Camera *cameras[5];
 	
     Hlong MainWndID;
+	QStringList models;
+	
 	// Local control variables 
 	HTuple  hv_Width, hv_Height;
     HTuple  hv_WindowID;
@@ -106,7 +110,11 @@ public:
 	void startrun();
 	void readtestpara();
 	void run();
-	void contextMenuEvent(QContextMenuEvent *);
+	void modelAuto();
+	void modelSelect();
+	void modelOnce();
+	void modelTest();
+	//void contextMenuEvent(QContextMenuEvent *);
 private:
 	Ui::LineCameraClass ui;
 	QAction* saveimage;
@@ -120,11 +128,13 @@ private:
     void showimage();
 	void linkdevice();
 	void getproduct();
+    void getmodel(int);
 	//void returnlogindata();
 	void test();
 	void geta();
 	void getb();
-	void ADDChange();
+	void forceGo();
+//	void ADDChange();
 
 };
 
