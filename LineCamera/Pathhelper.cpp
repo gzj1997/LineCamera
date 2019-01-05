@@ -4,7 +4,7 @@ string PathHelper::dataPath = "";
 string PathHelper::exepath = "";
 string PathHelper::productname = "";
 string PathHelper::productPath = "";
-QString PathHelper::errorimagepath = "E:/errorimage";
+QString PathHelper::errorimagepath = "F:/errorimage";
 
 bool PathHelper::newimagepath()
 {

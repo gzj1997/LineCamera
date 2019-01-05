@@ -2,6 +2,6 @@
 <para>
     <thr thr="30"/>
     <dth dth="25"/>
-    <area area_min="100" area_max="111111111"/>
-    <width width_min="100" width_max="111111111"/>
+    <area area_min="80" area_max="111111111"/>
+    <width width_min="80" width_max="111111111"/>
 </para>

@@ -20,6 +20,8 @@ bool forceGo1 = false;
 list<nut*> *nutlist = nullptr;
 nut * currentnut = nullptr;
 nut * OPnut = nullptr;
+
+bool IsSaveImage = false;
 LineCamera::LineCamera(QWidget *parent)
 	: QMainWindow(parent)
 {
@@ -59,7 +61,9 @@ LineCamera::LineCamera(QWidget *parent)
 }
 void LineCamera::initail()
 {
-	
+	//¼±Í£
+	d2210_config_EMG_PIN(Card::cardNo, true, 1);
+
 	ui.centralWidget->setStyleSheet("background-color: rgb(255, 165, 0)");
 	ui.verticalLayoutWidget_2->setStyleSheet("background-color: rgb(158, 137, 131)");
 	ui.horizontalLayoutWidget->setStyleSheet("background-color: rgb(238, 233, 233)");
@@ -69,6 +73,17 @@ void LineCamera::initail()
 	 ui.comboBox->setCurrentIndex(0); 
 	 currentmodel = 0;
 	//	ui.gridLayout->setMargin(2);
+
+	 //ÊÇ·ñ´æÍ¼
+	 ui.radioButton->setChecked(false);
+	 IsSaveImage = false;
+
+	//ÆøÑ¹±í
+	 m_pTimer = new QTimer(this);
+	 m_pTimer->setInterval(5000);
+	 connect(m_pTimer, SIGNAL(timeout()), this, SLOT(timer_tick()));
+
+	 m_pTimer->start();
 
 	readcamerasetting();
 	isfirst = true;
@@ -211,9 +226,12 @@ void LineCamera::setAlgorithm()
 	Ca->show();
 }
 
+bool on_run = false;
+bool oktostop = false;
 void LineCamera::startrun()
 {
 //	on_catch = false;
+	oktostop = false;
 	d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::On);
 	cameras[0]->OnGrab();
 
@@ -229,9 +247,9 @@ void LineCamera::startrun()
 void LineCamera::run()
 {
 	//qDebug() << "hhhhhhhhhhhhhhhhhhdddddddddddddd";
-	while (true) {
+	while (on_run) {
 		currentPos = (int)d2210_get_encoder(Card::Axis0);
-		if (!nutlist->empty())
+		if (!nutlist->empty()  && on_run)
 		{
 			switch (currentmodel)
 			{
@@ -245,6 +263,12 @@ void LineCamera::run()
 			
 		}
 	}
+	d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::Off);
+	d2210_imd_stop(Card::Axis0);
+	d2210_imd_stop(Card::Axis1);
+
+
+	
 }
 void LineCamera::modelAuto()
 {
@@ -256,7 +280,7 @@ void LineCamera::modelAuto()
 	d2210_change_speed(Card::Axis0, speed_heng / 2);
 	d2210_t_vmove(Card::Axis1, 1);
 	OPnut = nutlist->front();
-	nutlist->pop_front();
+	nutlist->clear();
 	int photox = OPnut->x;
 	int photoy = OPnut->y;
 	//	this_thread::sleep_for(std::chrono::milliseconds(300));
@@ -284,7 +308,7 @@ void LineCamera::modelAuto()
 
 	}
 
-	HalconCpp::DispObj(cameras[0]->errorimage, hv_WindowID);
+//	HalconCpp::DispObj(cameras[0]->errorimage, hv_WindowID);
 
 	d2210_imd_stop(Card::Axis0);
 	d2210_imd_stop(Card::Axis1);
@@ -321,45 +345,61 @@ void LineCamera::modelAuto()
 		}
 
 	}
+	oktostop = true;
 	//ÖØÆô
-	startrun();
-	d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::On);
+	if (on_run)
+	{
+		startrun();
+		d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::On);
+	}
+	else {
+		d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::Off);
+
+		d2210_imd_stop(Card::Axis0);
+		d2210_imd_stop(Card::Axis1);
+
+	}
+
 	//falsenut = false;
 }
 void LineCamera::modelSelect()
 {
-	this_thread::sleep_for(std::chrono::milliseconds(1000));
+	this_thread::sleep_for(std::chrono::milliseconds(1500));
 
 	if (forceGo1)
 	{
-		modelOnce();
+		nutlist->pop_front();
+		qDebug() << nutlist->size();
 	}
 	else
 	{
+		qDebug() << nutlist->size();
 		modelAuto();
+		
 	}
 	forceGo1 = false;
 }
 void LineCamera::modelOnce()
 {
 	currentPos = (int)d2210_get_encoder(Card::Axis0);
-//	cameras[0]->OnFreeze();
+	
 	//Öá0 µÖ´ïÎ»ÖÃ;
 	//d2210_imd_stop(Card::Axis0);
 	d2210_change_speed(Card::Axis0, speed_heng / 2);
 	d2210_t_vmove(Card::Axis1, 1);
 	//	this_thread::sleep_for(std::chrono::milliseconds(300));
 	int currentPosy = (int)d2210_get_encoder(Card::Axis1);
-
+	cameras[0]->OnFreeze();
 	OPnut = nutlist->front();
-	nutlist->pop_front();
+//	nutlist->pop_front();
+	nutlist->clear();
 	int photox = OPnut->x;
 	int photoy = OPnut->y;
 
 	//qDebug() << photoy << "kkkkk" << position << "kkkkk" << photox + position;
 	int kk = 0;
 	int zz = 0;
-	while ((currentPos < photox + position || currentPosy <photoy) && !(kk >0 && zz>0)) {
+	while ((currentPos < photox + position || currentPosy <photoy) && !(kk >0 && zz>0) ) {
 		//	this_thread::sleep_for(std::chrono::milliseconds(300));
 		currentPos = (int)d2210_get_encoder(Card::Axis0);
 		currentPosy = (int)d2210_get_encoder(Card::Axis1);
@@ -378,7 +418,8 @@ void LineCamera::modelOnce()
 		}
 
 	}
-
+	
+	//qDebug() << zz << kk;
 	HalconCpp::DispObj(cameras[0]->errorimage, hv_WindowID);
 
 	d2210_imd_stop(Card::Axis0);
@@ -403,12 +444,35 @@ void LineCamera::modelOnce()
 		}
 
 	}
-	startrun();
+	oktostop = true;
+ if (on_run)
+	{
+		startrun();
+		d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::On);
+	}
+ else {
+	 d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::Off);
+
+	 d2210_imd_stop(Card::Axis0);
+	 d2210_imd_stop(Card::Axis1);
+
+ }
+
 	//falsenut = false;
 }
 void LineCamera::modelTest()
 {
+	oktostop = true;
+
 	nutlist->clear();
+	//if (!on_run)
+	//{
+	//	d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::Off);
+
+	//	d2210_imd_stop(Card::Axis0);
+	//	d2210_imd_stop(Card::Axis1);
+
+	//}
 	//falsenut = false;
 }
 void LineCamera::readtestpara()
@@ -466,17 +530,16 @@ void LineCamera::btnopen()
 	{
 		readtestpara();
 		linkdevice();
-		startrun();
-		d2210_set_position(Card::Axis0, 0);
-		std::thread t(&LineCamera::run, this);
-		t.detach();
+		
 		isfirst = false;
 	}
-	else
-	{
-		startrun();
-	}
-
+	on_run = true;
+	startrun();
+	d2210_set_position(Card::Axis0, 0);
+	std::thread t(&LineCamera::run, this);
+	tthread = &t;
+	t.detach();
+	
 }
 
 void LineCamera::showlineimage(HalconCpp::HObject hv_image, LineCamera* lcamera)
@@ -495,20 +558,33 @@ void LineCamera::showlineimage(HalconCpp::HObject hv_image, LineCamera* lcamera)
 void LineCamera::btnclose()
 {
 //	on_catch = false;
+	on_run = false;
+
+	//while (!oktostop)
+	//{
+
+	//}
+	
 	cameras[0]->OnFreeze();
 	QString aa;
-	d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::Off);
-	d2210_imd_stop(Card::Axis0);
-	d2210_imd_stop(Card::Axis1);
+
+	//d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::Off);
+
+	//d2210_imd_stop(Card::Axis0);
+	//d2210_imd_stop(Card::Axis1);
+	this_thread::sleep_for(std::chrono::milliseconds(1000));
+
 	//d2210_board_close();
 //	aa = cameras[0]->num1;
 	//ui.lineEdit->setText( aa);
 }
 void LineCamera::btnstop()
 {
+	//TerminateThread(tthread,0);
 //	on_catch = false;
-	d2210_imd_stop(Card::Axis0);
-	d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::Off);
+	//on_run = false;
+	//d2210_imd_stop(Card::Axis0);
+	//d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::Off);
 	//HalconCpp::CloseWindow(hv_WindowID);
 }
 
@@ -730,6 +806,34 @@ void LineCamera::forceGo()
 {
 	forceGo1 = true;
 }
+bool getup = true;
+void LineCamera::timer_tick()
+{
+	int  k = d2210_read_inbit(Card::cardNo, Card::qiyabiao);
+
+
+	if (k == 0)
+	{
+		if (getup)
+		{
+			QMessageBox::warning(this, "warning", u8"Çë¼ì²éÆøÑ¹±í", QMessageBox::Ok, QMessageBox::NoButton);
+			d2210_write_outbit(Card::Axis0, Card::redLed, Card::On);
+			this_thread::sleep_for(std::chrono::milliseconds(2000));
+			d2210_write_outbit(Card::Axis0, Card::redLed, Card::Off);
+			getup = false;
+		}
+
+	}
+	else {
+		getup = true;
+
+	}
+}
+
+void LineCamera::issaveimage()
+{
+		IsSaveImage = ui.radioButton->isChecked();
+}
 
 void Camera::processimage()
 {
@@ -798,10 +902,14 @@ void Camera::processimage()
 		if (hv_Number > 0)
 		{
 			long x = (long)hv_r[0].D();
-			long y = 4096-(long)hv_c[0].D();
+			long y = (long)hv_c[0].D();
+
+			HObject ho_ROI1;
+			HTuple  hv_WindowHandle;
+			
 			SYSTEMTIME sys;
 			GetLocalTime(&sys);
-			QString imagename = PathHelper::errorimagepath + "-" + QString::number(sys.wDay)+"-" + QString::number(sys.wHour)+"-" + QString::number(sys.wMinute)+"-" + QString::number(sys.wSecond) +"-"+ QString::number(sys.wMilliseconds);
+			QString imagename = PathHelper::errorimagepath + "/" + QString::number(sys.wDay)+"-" + QString::number(sys.wHour)+"-" + QString::number(sys.wMinute)+"-" + QString::number(sys.wSecond) +"-"+ QString::number(sys.wMilliseconds);
 			
 			currentnut = new nut();
 			currentnut->timename = imagename.toStdString();
@@ -809,11 +917,21 @@ void Camera::processimage()
 			
 			//¼ÆÊý
 
-			//´æÍ¼
-			HalconCpp::WriteImage(himage, "bmp", 0, currentnut->timename.c_str());
-			qDebug() << x << y << "area" << (long)hv_area[0].D();
+			////´æÍ¼
+			GenCircle(&ho_ROI1, x, y, 60);
+			dev_open_window_fit_image(ho_Image, 0, 0, -1, -1, &hv_WindowHandle);
+			if (HDevWindowStack::IsOpen())
+				DispObj(ho_Image, HDevWindowStack::GetActive());
+			if (HDevWindowStack::IsOpen())
+				DispObj(ho_ROI1, HDevWindowStack::GetActive());
+			DumpWindowImage(&himage, hv_WindowHandle);
+			if (IsSaveImage)
+			{
+				qDebug() << "save";
+				HalconCpp::WriteImage(himage, "bmp", 0, currentnut->timename.c_str());
+			}
+			qDebug() << x << 4096 - y << "area" << (long)hv_area[0].D();
 			sf_test(x, y);
-			
 			
 		}
 	}
@@ -822,7 +940,7 @@ void Camera::processimage()
 
 	if (isshow)
 	{
-		LineCamera::showlineimage(imagelist.front(), (LineCamera*)Lcamera);
+		LineCamera::showlineimage(himage, (LineCamera*)Lcamera);
 		if (hv_Number > 0)
 		{
 			isshow = false;
@@ -844,7 +962,7 @@ void Camera::sf_test(long x, long y)
 	
 
 	int photox = d2210_get_encoder(Card::Axis0) + (long)(x/2 );
-	double yy = y;
+	double yy = 4096-y;
 	yy = (yy / 4096) * positionb + positiona;
 	int photoy = (long)yy;
 	qDebug() << photox << photoy;
@@ -869,10 +987,10 @@ bool Camera::letitgo()
 	{
 		return true;
 	}
-	if (currentmodel == 4)
-	{
-		return false;
-	}
+	//if (currentmodel == 4)
+	//{
+	//	return false;
+	//}
 	if ( abs(currentnut->x - errory ) <300 && abs(currentnut->x - errorx)<50 )
 	{
 		thesameerror++;
@@ -897,17 +1015,97 @@ bool Camera::letitgo()
 	}
 	return true;
 }
+
 void Camera::OnGrab()
 {
 	if (!m_Xfer->IsGrabbing())
 	{
 		m_Xfer->Grab();
 	}
+	qDebug() << "OnGrab" << m_Xfer->IsGrabbing();
 }
 
 void Camera::OnFreeze()
 {
-	if (m_Xfer->Freeze())
+	if (m_Xfer->IsGrabbing())
 	{
+		m_Xfer->Freeze();
 	}
+}
+void Camera::dev_open_window_fit_image(HObject ho_Image, HTuple hv_Row, HTuple hv_Column, HTuple hv_WidthLimit, HTuple hv_HeightLimit, HTuple * hv_WindowHandle)
+{
+
+	// Local iconic variables
+
+	// Local control variables
+	HTuple  hv_MinWidth, hv_MaxWidth, hv_MinHeight;
+	HTuple  hv_MaxHeight, hv_ResizeFactor, hv_ImageWidth, hv_ImageHeight;
+	HTuple  hv_TempWidth, hv_TempHeight, hv_WindowWidth, hv_WindowHeight;
+
+	//This procedure opens a new graphics window and adjusts the size
+	//such that it fits into the limits specified by WidthLimit
+	//and HeightLimit, but also maintains the correct image aspect ratio.
+	//
+	//If it is impossible to match the minimum and maximum extent requirements
+	//at the same time (f.e. if the image is very long but narrow),
+	//the maximum value gets a higher priority,
+	//
+	//Parse input tuple WidthLimit
+	if (0 != (HTuple((hv_WidthLimit.TupleLength()) == 0).TupleOr(hv_WidthLimit<0)))
+	{
+		hv_MinWidth = 500;
+		hv_MaxWidth = 800;
+	}
+	else if (0 != ((hv_WidthLimit.TupleLength()) == 1))
+	{
+		hv_MinWidth = 0;
+		hv_MaxWidth = hv_WidthLimit;
+	}
+	else
+	{
+		hv_MinWidth = ((const HTuple&)hv_WidthLimit)[0];
+		hv_MaxWidth = ((const HTuple&)hv_WidthLimit)[1];
+	}
+	//Parse input tuple HeightLimit
+	if (0 != (HTuple((hv_HeightLimit.TupleLength()) == 0).TupleOr(hv_HeightLimit<0)))
+	{
+		hv_MinHeight = 400;
+		hv_MaxHeight = 600;
+	}
+	else if (0 != ((hv_HeightLimit.TupleLength()) == 1))
+	{
+		hv_MinHeight = 0;
+		hv_MaxHeight = hv_HeightLimit;
+	}
+	else
+	{
+		hv_MinHeight = ((const HTuple&)hv_HeightLimit)[0];
+		hv_MaxHeight = ((const HTuple&)hv_HeightLimit)[1];
+	}
+	//
+	//Test, if window size has to be changed.
+	hv_ResizeFactor = 1;
+	GetImageSize(ho_Image, &hv_ImageWidth, &hv_ImageHeight);
+	//First, expand window to the minimum extents (if necessary).
+	if (0 != (HTuple(hv_MinWidth>hv_ImageWidth).TupleOr(hv_MinHeight>hv_ImageHeight)))
+	{
+		hv_ResizeFactor = (((hv_MinWidth.TupleReal()) / hv_ImageWidth).TupleConcat((hv_MinHeight.TupleReal()) / hv_ImageHeight)).TupleMax();
+	}
+	hv_TempWidth = hv_ImageWidth*hv_ResizeFactor;
+	hv_TempHeight = hv_ImageHeight*hv_ResizeFactor;
+	//Then, shrink window to maximum extents (if necessary).
+	if (0 != (HTuple(hv_MaxWidth<hv_TempWidth).TupleOr(hv_MaxHeight<hv_TempHeight)))
+	{
+		hv_ResizeFactor = hv_ResizeFactor*((((hv_MaxWidth.TupleReal()) / hv_TempWidth).TupleConcat((hv_MaxHeight.TupleReal()) / hv_TempHeight)).TupleMin());
+	}
+	hv_WindowWidth = hv_ImageWidth*hv_ResizeFactor;
+	hv_WindowHeight = hv_ImageHeight*hv_ResizeFactor;
+	//Resize window
+	SetWindowAttr("background_color", "black");
+	OpenWindow(hv_Row, hv_Column, hv_WindowWidth, hv_WindowHeight, 0, "", "", &(*hv_WindowHandle));
+	HDevWindowStack::Push((*hv_WindowHandle));
+	if (HDevWindowStack::IsOpen())
+		SetPart(HDevWindowStack::GetActive(), 0, 0, hv_ImageHeight - 1, hv_ImageWidth - 1);
+	return;
+
 }

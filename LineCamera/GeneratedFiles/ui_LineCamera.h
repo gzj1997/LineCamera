@@ -22,6 +22,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
@@ -47,6 +48,7 @@ public:
     QLineEdit *lineEdit_3;
     QLabel *label_6;
     QLineEdit *lineEdit_2;
+    QRadioButton *radioButton;
     QLabel *label_7;
     QLineEdit *lineEdit;
     QGridLayout *gridLayout;
@@ -61,11 +63,8 @@ public:
     QPushButton *pushButton;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
-    QLabel *label_3;
-    QSpacerItem *horizontalSpacer_2;
-    QLabel *label_8;
-    QSpacerItem *horizontalSpacer;
-    QLabel *label_2;
+    QLabel *label_10;
+    QLabel *label_11;
     QLabel *label;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
@@ -157,6 +156,12 @@ public:
 
         horizontalLayout_2->addWidget(lineEdit_2);
 
+        radioButton = new QRadioButton(verticalLayoutWidget_2);
+        radioButton->setObjectName(QStringLiteral("radioButton"));
+        radioButton->setAutoExclusive(false);
+
+        horizontalLayout_2->addWidget(radioButton);
+
         label_7 = new QLabel(verticalLayoutWidget_2);
         label_7->setObjectName(QStringLiteral("label_7"));
 
@@ -230,36 +235,17 @@ public:
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        label_3 = new QLabel(horizontalLayoutWidget);
-        label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setEnabled(true);
-        QFont font2;
-        font2.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
-        font2.setPointSize(18);
-        font2.setBold(true);
-        font2.setItalic(false);
-        font2.setWeight(75);
-        label_3->setFont(font2);
+        label_10 = new QLabel(horizontalLayoutWidget);
+        label_10->setObjectName(QStringLiteral("label_10"));
+        label_10->setFont(font1);
 
-        horizontalLayout->addWidget(label_3);
+        horizontalLayout->addWidget(label_10);
 
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        label_11 = new QLabel(horizontalLayoutWidget);
+        label_11->setObjectName(QStringLiteral("label_11"));
+        label_11->setFont(font1);
 
-        horizontalLayout->addItem(horizontalSpacer_2);
-
-        label_8 = new QLabel(horizontalLayoutWidget);
-        label_8->setObjectName(QStringLiteral("label_8"));
-
-        horizontalLayout->addWidget(label_8);
-
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer);
-
-        label_2 = new QLabel(horizontalLayoutWidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
-
-        horizontalLayout->addWidget(label_2);
+        horizontalLayout->addWidget(label_11);
 
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
@@ -302,6 +288,7 @@ public:
         QObject::connect(lineEdit_3, SIGNAL(editingFinished()), LineCameraClass, SLOT(getb()));
         QObject::connect(comboBox, SIGNAL(currentIndexChanged(int)), LineCameraClass, SLOT(getmodel(int)));
         QObject::connect(pushButton_10, SIGNAL(clicked()), LineCameraClass, SLOT(forceGo()));
+        QObject::connect(radioButton, SIGNAL(clicked()), LineCameraClass, SLOT(issaveimage()));
 
         QMetaObject::connectSlotsByName(LineCameraClass);
     } // setupUi
@@ -314,6 +301,7 @@ public:
         label_4->setText(QApplication::translate("LineCameraClass", "<html><head/><body><p><span style=\" font-size:11pt;\">\344\270\212\351\231\220x\357\274\232</span></p></body></html>", 0));
         label_5->setText(QApplication::translate("LineCameraClass", "<html><head/><body><p><span style=\" font-size:11pt;\">\344\270\213\351\231\220y:</span></p></body></html>", 0));
         label_6->setText(QApplication::translate("LineCameraClass", "<html><head/><body><p><span style=\" font-size:11pt; font-weight:600;\">\346\265\213\351\207\217\345\200\274\357\274\232</span></p></body></html>", 0));
+        radioButton->setText(QApplication::translate("LineCameraClass", "\347\233\270\346\234\272\345\255\230\345\233\276", 0));
         label_7->setText(QApplication::translate("LineCameraClass", "device", 0));
         pushButton_4->setText(QApplication::translate("LineCameraClass", "show", 0));
         pushButton_3->setText(QApplication::translate("LineCameraClass", "\345\201\234\346\255\242\346\243\200\346\265\213", 0));
@@ -324,9 +312,8 @@ public:
         pushButton_8->setText(QApplication::translate("LineCameraClass", "Login", 0));
         pushButton_9->setText(QApplication::translate("LineCameraClass", "\350\256\276\345\244\207\346\243\200\346\265\213", 0));
         pushButton->setText(QApplication::translate("LineCameraClass", "\345\220\257\345\212\250\346\243\200\346\265\213", 0));
-        label_3->setText(QApplication::translate("LineCameraClass", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">\351\242\227\347\262\222\347\211\251\346\235\202\350\264\250\345\205\211\345\255\246\346\243\200\346\237\245\346\234\272</span></p></body></html>", 0));
-        label_8->setText(QApplication::translate("LineCameraClass", "WELCOME TO USE", 0));
-        label_2->setText(QApplication::translate("LineCameraClass", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">\344\270\212\346\265\267\350\277\210\350\277\205\345\250\201\350\247\206\350\247\211\347\247\221\346\212\200\346\234\211\351\231\220\345\205\254\345\217\270</span></p></body></html>", 0));
+        label_10->setText(QApplication::translate("LineCameraClass", "  \351\242\227\347\262\222\347\211\251\346\235\202\350\264\250\345\205\211\345\255\246\346\243\200\346\237\245\346\234\272", 0));
+        label_11->setText(QApplication::translate("LineCameraClass", "                      \344\270\212\346\265\267\350\277\210\350\277\205\345\250\201\350\247\206\350\247\211\347\247\221\346\212\200\346\234\211\351\231\220\345\205\254\345\217\270", 0));
         label->setText(QString());
     } // retranslateUi
 

@@ -38,7 +38,7 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_5">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0,0,0,0">
        <property name="spacing">
         <number>5</number>
        </property>
@@ -124,6 +124,16 @@
        </item>
        <item>
         <widget class="QLineEdit" name="lineEdit_2"/>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton">
+         <property name="text">
+          <string>相机存图</string>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_7">
@@ -223,61 +233,32 @@
       <number>16</number>
      </property>
      <item>
-      <widget class="QLabel" name="label_3">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
+      <widget class="QLabel" name="label_10">
        <property name="font">
         <font>
          <family>楷体</family>
          <pointsize>18</pointsize>
          <weight>75</weight>
-         <italic>false</italic>
          <bold>true</bold>
         </font>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;颗粒物杂质光学检查机&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>  颗粒物杂质光学检查机</string>
        </property>
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+      <widget class="QLabel" name="label_11">
+       <property name="font">
+        <font>
+         <family>楷体</family>
+         <pointsize>18</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_8">
        <property name="text">
-        <string>WELCOME TO USE</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;上海迈迅威视觉科技有限公司&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>                      上海迈迅威视觉科技有限公司</string>
        </property>
       </widget>
      </item>
@@ -504,8 +485,8 @@
    <slot>getb()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>771</x>
-     <y>549</y>
+     <x>746</x>
+     <y>574</y>
     </hint>
     <hint type="destinationlabel">
      <x>247</x>
@@ -545,6 +526,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>radioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>LineCameraClass</receiver>
+   <slot>issaveimage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>991</x>
+     <y>562</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>965</x>
+     <y>515</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>showimage()</slot>
@@ -560,5 +557,6 @@
   <slot>getb()</slot>
   <slot>getmodel(int)</slot>
   <slot>forceGo()</slot>
+  <slot>issaveimage()</slot>
  </slots>
 </ui>

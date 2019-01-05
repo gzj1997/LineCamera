@@ -19,6 +19,7 @@ public :
 	// static const unsigned short Camera6 = 0;
 	 static const unsigned short Solenoid1 = 5;
 	 static const unsigned short Solenoid2 = 6;
+	 static const unsigned short qiyabiao = 12;
 	// static const unsigned short Solenoid3 = 0;
 	 static const unsigned short Out1 = 1;
 	 static  const unsigned short zhizhen = 1;

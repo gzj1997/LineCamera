@@ -11,6 +11,7 @@
 #include"DMC2210.h"
 #include"nut.h"
 #include<qmessagebox.h>
+#include<qtimer.h>
 #include"LoginData.h"
 #include<qxmlstream.h>
 #include"datahelper.h"
@@ -62,6 +63,10 @@ public:
 	void  sf_test(long x, long y);
 
 	bool  letitgo();
+
+	void dev_open_window_fit_image(HObject ho_Image, HTuple hv_Row, HTuple hv_Column,
+		HTuple hv_WidthLimit, HTuple hv_HeightLimit, HTuple *hv_WindowHandle);
+
 private:	//к╫сп╠Да©	
 	BOOL DestroyObjects();
 	BOOL CreateObjects();
@@ -90,7 +95,7 @@ public:
 	
     Hlong MainWndID;
 	QStringList models;
-	
+	std::thread * tthread;
 	// Local control variables 
 	HTuple  hv_Width, hv_Height;
     HTuple  hv_WindowID;
@@ -100,7 +105,7 @@ public:
 	int speed_heng;
 	int speed_zong;
 	long position;
-
+	QTimer *m_pTimer;
 	
 
 	static void showlineimage(HalconCpp::HObject hv_image, LineCamera * lcamera);
@@ -134,6 +139,8 @@ private:
 	void geta();
 	void getb();
 	void forceGo();
+	void timer_tick();
+	void issaveimage();
 //	void ADDChange();
 
 };
