@@ -22,6 +22,10 @@ nut * currentnut = nullptr;
 nut * OPnut = nullptr;
 
 bool IsSaveImage = false;
+int errornum = 0;
+int labelx = 666;
+int labely = 666;
+long errorx = 0, errory = 0;
 LineCamera::LineCamera(QWidget *parent)
 	: QMainWindow(parent)
 {
@@ -48,7 +52,10 @@ LineCamera::LineCamera(QWidget *parent)
 //	Hlong winid = (Hlong)this->ui.label->winId();
 	//ui.label->setAlignment(Qt::AlignCenter);
 //	qDebug() << (long)hv_Width<<"hv_Width";
-	OpenWindow(0, 0, ui.label->width() , ui.label->height(), MainWndID, "visible", "", &hv_WindowID);
+	labelx = ui.label->width();
+	labely = ui.label->height();
+	OpenWindow(0, 0,labelx ,labely, MainWndID, "visible", "", &hv_WindowID);
+	ui.pushButton_6->setDisabled(true);
 	//HDevWindowStack::Push(hv_WindowID);
 	//if (HDevWindowStack::IsOpen())
 	//	DispObj(himage, HDevWindowStack::GetActive());
@@ -80,7 +87,7 @@ void LineCamera::initail()
 
 	//气压表
 	 m_pTimer = new QTimer(this);
-	 m_pTimer->setInterval(5000);
+	 m_pTimer->setInterval(3000);
 	 connect(m_pTimer, SIGNAL(timeout()), this, SLOT(timer_tick()));
 
 	 m_pTimer->start();
@@ -102,34 +109,38 @@ void LineCamera::initail()
 		d2210_write_SEVON_PIN(Card::Axis1, Card::On);
 		d2210_set_profile(Card::Axis1, Card::minspeed, speed_zong, Card::acc, Card::acc);
 
-		//到达限位
-		d2210_t_vmove(Card::Axis1, 0);
-		this_thread::sleep_for(std::chrono::milliseconds(100));
-		int kkk = d2210_axis_io_status(1);
-		while (!(kkk == 8192)) {
-			kkk = d2210_axis_io_status(1);
-			//	this_thread::sleep_for(std::chrono::milliseconds(300));
-			//	qDebug() << d2210_get_encoder(1) << "K" << kkk;
-		}
-		qDebug() << d2210_get_encoder(1) << "K" << kkk;
-		//  d2210_set_position(1, 0);
-		d2210_set_encoder(Card::Axis1, 0);
-		qDebug() << d2210_get_encoder(1);
-		//到达图片
-		d2210_t_vmove(Card::Axis1, 1);
-		//	d2210_set_profile(Card::Axis1, Card::minspeed, 20000, Card::acc, Card::acc);
-		int cut1 = d2210_get_encoder(Card::Axis1);
-		int cut = cut1;
-		while (cut < positiona) {
-			this_thread::sleep_for(std::chrono::milliseconds(30));
-		//	qDebug() << d2210_get_encoder(1) << "kkkkk";
-			cut = d2210_get_encoder(Card::Axis1);
-		}
-		qDebug() << d2210_get_encoder(1);
-		d2210_imd_stop(Card::Axis1);
+		motionback();
 	}
 }
+void LineCamera::motionback()
+{
 
+	//到达限位
+	d2210_t_vmove(Card::Axis1, 0);
+	this_thread::sleep_for(std::chrono::milliseconds(100));
+	int kkk = d2210_axis_io_status(1);
+	while (!(kkk == 8192)) {
+		kkk = d2210_axis_io_status(1);
+		//	this_thread::sleep_for(std::chrono::milliseconds(300));
+		//	qDebug() << d2210_get_encoder(1) << "K" << kkk;
+	}
+	//qDebug() << d2210_get_encoder(1) << "K" << kkk;
+	//  d2210_set_position(1, 0);
+	d2210_set_encoder(Card::Axis1, 0);
+	//qDebug() << d2210_get_encoder(1);
+	//到达图片
+	//d2210_t_vmove(Card::Axis1, 1);
+	////	d2210_set_profile(Card::Axis1, Card::minspeed, 20000, Card::acc, Card::acc);
+	//int cut1 = d2210_get_encoder(Card::Axis1);
+	//int cut = cut1;
+	//while (cut < positiona) {
+	//	this_thread::sleep_for(std::chrono::milliseconds(30));
+	//	//	qDebug() << d2210_get_encoder(1) << "kkkkk";
+	//	cut = d2210_get_encoder(Card::Axis1);
+	//}
+	//qDebug() << d2210_get_encoder(1);
+	//d2210_imd_stop(Card::Axis1);
+}
 void LineCamera::readcamerasetting()
 {
 	DataPath *Dp;
@@ -232,7 +243,7 @@ void LineCamera::startrun()
 {
 //	on_catch = false;
 	oktostop = false;
-	d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::On);
+	
 	cameras[0]->OnGrab();
 
 	d2210_set_pulse_outmode(Card::Axis0, 0);
@@ -266,7 +277,7 @@ void LineCamera::run()
 	d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::Off);
 	d2210_imd_stop(Card::Axis0);
 	d2210_imd_stop(Card::Axis1);
-
+	
 
 	
 }
@@ -275,6 +286,7 @@ void LineCamera::modelAuto()
 	currentPos = (int)d2210_get_encoder(Card::Axis0);
 	cameras[0]->OnFreeze();
 	d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::Off);
+	this_thread::sleep_for(std::chrono::milliseconds(1000));
 	//轴0 抵达位置;
 	//d2210_imd_stop(Card::Axis0);
 	d2210_change_speed(Card::Axis0, speed_heng / 2);
@@ -308,7 +320,7 @@ void LineCamera::modelAuto()
 
 	}
 
-//	HalconCpp::DispObj(cameras[0]->errorimage, hv_WindowID);
+	HalconCpp::DispObj(cameras[0]->errorimage, hv_WindowID);
 
 	d2210_imd_stop(Card::Axis0);
 	d2210_imd_stop(Card::Axis1);
@@ -350,7 +362,14 @@ void LineCamera::modelAuto()
 	if (on_run)
 	{
 		startrun();
-		d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::On);
+
+
+		
+		this_thread::sleep_for(std::chrono::milliseconds(1000));
+		if (nutlist->empty())
+		{
+			d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::On);
+		}
 	}
 	else {
 		d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::Off);
@@ -386,6 +405,7 @@ void LineCamera::modelOnce()
 	//轴0 抵达位置;
 	//d2210_imd_stop(Card::Axis0);
 	d2210_change_speed(Card::Axis0, speed_heng / 2);
+	d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::Off);
 	d2210_t_vmove(Card::Axis1, 1);
 	//	this_thread::sleep_for(std::chrono::milliseconds(300));
 	int currentPosy = (int)d2210_get_encoder(Card::Axis1);
@@ -475,6 +495,7 @@ void LineCamera::modelTest()
 	//}
 	//falsenut = false;
 }
+
 void LineCamera::readtestpara()
 {
 	QString dpath = QString::fromStdString(PathHelper::productPath+ "/" + PathHelper::productname) + "/para.xml";
@@ -533,13 +554,15 @@ void LineCamera::btnopen()
 		
 		isfirst = false;
 	}
+	d2210_write_outbit(Card::Axis0, Card::greenLed, Card::On);
+	ui.pushButton->setDisabled(true);
 	on_run = true;
 	startrun();
 	d2210_set_position(Card::Axis0, 0);
 	std::thread t(&LineCamera::run, this);
 	tthread = &t;
 	t.detach();
-	
+	d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::On);
 }
 
 void LineCamera::showlineimage(HalconCpp::HObject hv_image, LineCamera* lcamera)
@@ -552,14 +575,14 @@ void LineCamera::showlineimage(HalconCpp::HObject hv_image, LineCamera* lcamera)
 		}
 		lcamera->numm++;
 		HalconCpp::DispObj(hv_image, lcamera->hv_WindowID);
-
+		lcamera->ui.lineEdit_2->setText(QString::number(errornum));
 }
 
 void LineCamera::btnclose()
 {
 //	on_catch = false;
 	on_run = false;
-
+	d2210_write_outbit(Card::Axis0, Card::greenLed, Card::Off);
 	//while (!oktostop)
 	//{
 
@@ -568,18 +591,52 @@ void LineCamera::btnclose()
 	cameras[0]->OnFreeze();
 	QString aa;
 
-	//d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::Off);
+	d2210_write_outbit(Card::Axis0, Card::zhizhen, Card::Off);
 
 	//d2210_imd_stop(Card::Axis0);
 	//d2210_imd_stop(Card::Axis1);
 	this_thread::sleep_for(std::chrono::milliseconds(1000));
-
+	ui.pushButton->setDisabled(false);
 	//d2210_board_close();
 //	aa = cameras[0]->num1;
 	//ui.lineEdit->setText( aa);
 }
 void LineCamera::btnstop()
 {
+	HTuple  hv_WindowHandle;
+	HObject himage1, ho_ROI1;
+	QString str = QDir::currentPath() + "/Data/I2.bmp";
+
+	HalconCpp::ReadImage(&himage1, str.toStdString().c_str());
+
+	//(0, 0, 4096, 1024,0, "visible", "", &hv_WindowHandle);
+	OpenWindow(0, 0, 4096, 1024, 0, "invisible", "", &hv_WindowHandle);
+	//HDevWindowStack::Push(hv_WindowID);
+	//if (HDevWindowStack::IsOpen())
+	//	SetDraw(HDevWindowStack::GetActive(), "margin");
+	//if (HDevWindowStack::IsOpen())
+	//	SetColor(HDevWindowStack::GetActive(), "red");
+	SetDraw(hv_WindowHandle, "margin");
+	SetColor(hv_WindowHandle, "red");
+	GenCircle(&ho_ROI1, 200, 200, 90);
+	DispObj(himage1, hv_WindowHandle);
+	DispObj(ho_ROI1, hv_WindowHandle);
+	//if (HDevWindowStack::IsOpen())
+	//	DispObj(himage1, HDevWindowStack::GetActive());
+	//if (HDevWindowStack::IsOpen())
+	//	DispObj(ho_ROI1, HDevWindowStack::GetActive());
+	DumpWindowImage(&himage1, hv_WindowHandle);
+
+
+	WriteImage(himage1, "bmp", 0, "C:/Users/mxw/Desktop/151.bmp");
+
+	CloseWindow(hv_WindowHandle);
+
+	DispObj(himage1, hv_WindowID);
+	//if (HDevWindowStack::IsOpen())
+	//	CloseWindow(HDevWindowStack::Pop());
+
+	
 	//TerminateThread(tthread,0);
 //	on_catch = false;
 	//on_run = false;
@@ -794,12 +851,12 @@ int area = 1;
 int widthheight = 1;
 void LineCamera::geta()
 {
-	area = ui.lineEdit_4->text().toInt();
+	//area = ui.lineEdit_4->text().toInt();
 	qDebug() << area;
 }
 void LineCamera::getb()
 {
-	widthheight = ui.lineEdit_3->text().toInt();
+	//widthheight = ui.lineEdit_3->text().toInt();
 }
 
 void LineCamera::forceGo()
@@ -812,15 +869,20 @@ void LineCamera::timer_tick()
 	int  k = d2210_read_inbit(Card::cardNo, Card::qiyabiao);
 
 
-	if (k == 0)
+	if (k == 1)
 	{
 		if (getup)
 		{
-			QMessageBox::warning(this, "warning", u8"请检查气压表", QMessageBox::Ok, QMessageBox::NoButton);
-			d2210_write_outbit(Card::Axis0, Card::redLed, Card::On);
-			this_thread::sleep_for(std::chrono::milliseconds(2000));
-			d2210_write_outbit(Card::Axis0, Card::redLed, Card::Off);
 			getup = false;
+			d2210_write_outbit(Card::Axis0, Card::redLed, Card::On);
+			int ret= QMessageBox::warning(this, "warning", u8"请检查气压表", QMessageBox::Ok, QMessageBox::NoButton);
+			//if (ret ==  QDialog::Accepted)
+			
+				d2210_write_outbit(Card::Axis0, Card::redLed, Card::Off);
+			
+			this_thread::sleep_for(std::chrono::milliseconds(2000));
+			
+			
 		}
 
 	}
@@ -901,6 +963,14 @@ void Camera::processimage()
 		}
 		if (hv_Number > 0)
 		{
+			if (currentmodel >1)
+			{
+				errornum += hv_Number[0].I();
+			}
+			else {
+				errornum += 1;
+			}
+
 			long x = (long)hv_r[0].D();
 			long y = (long)hv_c[0].D();
 
@@ -910,28 +980,27 @@ void Camera::processimage()
 			SYSTEMTIME sys;
 			GetLocalTime(&sys);
 			QString imagename = PathHelper::errorimagepath + "/" + QString::number(sys.wDay)+"-" + QString::number(sys.wHour)+"-" + QString::number(sys.wMinute)+"-" + QString::number(sys.wSecond) +"-"+ QString::number(sys.wMilliseconds);
-			
 			currentnut = new nut();
 			currentnut->timename = imagename.toStdString();
 			
-			
-			//计数
-
-			////存图
-			GenCircle(&ho_ROI1, x, y, 60);
-			dev_open_window_fit_image(ho_Image, 0, 0, -1, -1, &hv_WindowHandle);
-			if (HDevWindowStack::IsOpen())
-				DispObj(ho_Image, HDevWindowStack::GetActive());
-			if (HDevWindowStack::IsOpen())
-				DispObj(ho_ROI1, HDevWindowStack::GetActive());
+			OpenWindow(0, 0, 4096, 1024, 0, "invisible", "", &hv_WindowHandle);
+			SetDraw(hv_WindowHandle, "margin");
+			SetColor(hv_WindowHandle, "red");
+			SetLineWidth(hv_WindowHandle, 5);
+			GenCircle(&ho_ROI1, x, y, 50);
+			DispObj(himage, hv_WindowHandle);
+			DispObj(ho_ROI1, hv_WindowHandle);
 			DumpWindowImage(&himage, hv_WindowHandle);
+
 			if (IsSaveImage)
 			{
 				qDebug() << "save";
-				HalconCpp::WriteImage(himage, "bmp", 0, currentnut->timename.c_str());
+
+			 HalconCpp::WriteImage(himage, "bmp", 0, currentnut->timename.c_str());
 			}
+			CloseWindow(hv_WindowHandle);
 			qDebug() << x << 4096 - y << "area" << (long)hv_area[0].D();
-			sf_test(x, y);
+			sf_test(x, 4096 - y);
 			
 		}
 	}
@@ -962,7 +1031,7 @@ void Camera::sf_test(long x, long y)
 	
 
 	int photox = d2210_get_encoder(Card::Axis0) + (long)(x/2 );
-	double yy = 4096-y;
+	double yy = y;
 	yy = (yy / 4096) * positionb + positiona;
 	int photoy = (long)yy;
 	qDebug() << photox << photoy;
@@ -991,7 +1060,7 @@ bool Camera::letitgo()
 	//{
 	//	return false;
 	//}
-	if ( abs(currentnut->x - errory ) <300 && abs(currentnut->x - errorx)<50 )
+	if ( abs(currentnut->x - errorx ) <300 && abs(currentnut->y - errory)<50 )
 	{
 		thesameerror++;
 	}
@@ -1009,7 +1078,7 @@ bool Camera::letitgo()
 	}
 	else
 	{
-		errory = currentnut->x;
+		errory = currentnut->y;
 		errorx = currentnut->x;
 		return true;
 	}

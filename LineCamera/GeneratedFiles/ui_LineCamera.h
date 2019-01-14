@@ -42,25 +42,19 @@ public:
     QComboBox *comboBox;
     QSpacerItem *horizontalSpacer_3;
     QPushButton *pushButton_10;
-    QLabel *label_4;
-    QLineEdit *lineEdit_4;
-    QLabel *label_5;
-    QLineEdit *lineEdit_3;
+    QSpacerItem *horizontalSpacer;
     QLabel *label_6;
     QLineEdit *lineEdit_2;
     QRadioButton *radioButton;
     QLabel *label_7;
     QLineEdit *lineEdit;
     QGridLayout *gridLayout;
-    QPushButton *pushButton_4;
     QPushButton *pushButton_3;
-    QPushButton *pushButton_5;
-    QPushButton *pushButton_2;
     QPushButton *pushButton_6;
     QPushButton *pushButton_7;
-    QPushButton *pushButton_8;
     QPushButton *pushButton_9;
     QPushButton *pushButton;
+    QPushButton *pushButton_8;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
     QLabel *label_10;
@@ -126,25 +120,9 @@ public:
 
         horizontalLayout_2->addWidget(pushButton_10);
 
-        label_4 = new QLabel(verticalLayoutWidget_2);
-        label_4->setObjectName(QStringLiteral("label_4"));
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_2->addWidget(label_4);
-
-        lineEdit_4 = new QLineEdit(verticalLayoutWidget_2);
-        lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
-
-        horizontalLayout_2->addWidget(lineEdit_4);
-
-        label_5 = new QLabel(verticalLayoutWidget_2);
-        label_5->setObjectName(QStringLiteral("label_5"));
-
-        horizontalLayout_2->addWidget(label_5);
-
-        lineEdit_3 = new QLineEdit(verticalLayoutWidget_2);
-        lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
-
-        horizontalLayout_2->addWidget(lineEdit_3);
+        horizontalLayout_2->addItem(horizontalSpacer);
 
         label_6 = new QLabel(verticalLayoutWidget_2);
         label_6->setObjectName(QStringLiteral("label_6"));
@@ -179,25 +157,10 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, -1, -1, -1);
-        pushButton_4 = new QPushButton(verticalLayoutWidget_2);
-        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-
-        gridLayout->addWidget(pushButton_4, 1, 0, 1, 1);
-
         pushButton_3 = new QPushButton(verticalLayoutWidget_2);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
 
         gridLayout->addWidget(pushButton_3, 0, 2, 1, 1);
-
-        pushButton_5 = new QPushButton(verticalLayoutWidget_2);
-        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
-
-        gridLayout->addWidget(pushButton_5, 1, 1, 1, 1);
-
-        pushButton_2 = new QPushButton(verticalLayoutWidget_2);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-
-        gridLayout->addWidget(pushButton_2, 0, 1, 1, 1);
 
         pushButton_6 = new QPushButton(verticalLayoutWidget_2);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
@@ -209,11 +172,6 @@ public:
 
         gridLayout->addWidget(pushButton_7, 2, 1, 1, 1);
 
-        pushButton_8 = new QPushButton(verticalLayoutWidget_2);
-        pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
-
-        gridLayout->addWidget(pushButton_8, 1, 2, 1, 1);
-
         pushButton_9 = new QPushButton(verticalLayoutWidget_2);
         pushButton_9->setObjectName(QStringLiteral("pushButton_9"));
 
@@ -223,6 +181,11 @@ public:
         pushButton->setObjectName(QStringLiteral("pushButton"));
 
         gridLayout->addWidget(pushButton, 0, 0, 1, 1);
+
+        pushButton_8 = new QPushButton(verticalLayoutWidget_2);
+        pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
+
+        gridLayout->addWidget(pushButton_8, 0, 1, 1, 1);
 
 
         verticalLayout_5->addLayout(gridLayout);
@@ -261,31 +224,20 @@ public:
         statusBar = new QStatusBar(LineCameraClass);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         LineCameraClass->setStatusBar(statusBar);
-        QWidget::setTabOrder(lineEdit_4, lineEdit_3);
-        QWidget::setTabOrder(lineEdit_3, lineEdit_2);
         QWidget::setTabOrder(lineEdit_2, lineEdit);
         QWidget::setTabOrder(lineEdit, pushButton);
-        QWidget::setTabOrder(pushButton, pushButton_2);
-        QWidget::setTabOrder(pushButton_2, pushButton_3);
-        QWidget::setTabOrder(pushButton_3, pushButton_4);
-        QWidget::setTabOrder(pushButton_4, pushButton_5);
-        QWidget::setTabOrder(pushButton_5, pushButton_8);
-        QWidget::setTabOrder(pushButton_8, pushButton_6);
+        QWidget::setTabOrder(pushButton, pushButton_3);
+        QWidget::setTabOrder(pushButton_3, pushButton_6);
         QWidget::setTabOrder(pushButton_6, pushButton_7);
         QWidget::setTabOrder(pushButton_7, pushButton_9);
 
         retranslateUi(LineCameraClass);
-        QObject::connect(pushButton_4, SIGNAL(clicked()), LineCameraClass, SLOT(showimage()));
         QObject::connect(pushButton, SIGNAL(clicked()), LineCameraClass, SLOT(btnopen()));
-        QObject::connect(pushButton_2, SIGNAL(clicked()), LineCameraClass, SLOT(btnstop()));
         QObject::connect(pushButton_3, SIGNAL(clicked()), LineCameraClass, SLOT(btnclose()));
-        QObject::connect(pushButton_5, SIGNAL(clicked()), LineCameraClass, SLOT(linkdevice()));
         QObject::connect(pushButton_6, SIGNAL(clicked()), LineCameraClass, SLOT(setAlgorithm()));
         QObject::connect(pushButton_7, SIGNAL(clicked()), LineCameraClass, SLOT(setconsole()));
         QObject::connect(pushButton_8, SIGNAL(clicked()), LineCameraClass, SLOT(getproduct()));
         QObject::connect(pushButton_9, SIGNAL(clicked()), LineCameraClass, SLOT(test()));
-        QObject::connect(lineEdit_4, SIGNAL(editingFinished()), LineCameraClass, SLOT(geta()));
-        QObject::connect(lineEdit_3, SIGNAL(editingFinished()), LineCameraClass, SLOT(getb()));
         QObject::connect(comboBox, SIGNAL(currentIndexChanged(int)), LineCameraClass, SLOT(getmodel(int)));
         QObject::connect(pushButton_10, SIGNAL(clicked()), LineCameraClass, SLOT(forceGo()));
         QObject::connect(radioButton, SIGNAL(clicked()), LineCameraClass, SLOT(issaveimage()));
@@ -298,20 +250,15 @@ public:
         LineCameraClass->setWindowTitle(QApplication::translate("LineCameraClass", "LineCamera", 0));
         label_9->setText(QApplication::translate("LineCameraClass", "   \346\250\241\345\274\217", 0));
         pushButton_10->setText(QApplication::translate("LineCameraClass", "\350\277\207", 0));
-        label_4->setText(QApplication::translate("LineCameraClass", "<html><head/><body><p><span style=\" font-size:11pt;\">\344\270\212\351\231\220x\357\274\232</span></p></body></html>", 0));
-        label_5->setText(QApplication::translate("LineCameraClass", "<html><head/><body><p><span style=\" font-size:11pt;\">\344\270\213\351\231\220y:</span></p></body></html>", 0));
-        label_6->setText(QApplication::translate("LineCameraClass", "<html><head/><body><p><span style=\" font-size:11pt; font-weight:600;\">\346\265\213\351\207\217\345\200\274\357\274\232</span></p></body></html>", 0));
+        label_6->setText(QApplication::translate("LineCameraClass", "<html><head/><body><p><span style=\" font-size:11pt;\">\346\265\213\351\207\217\344\270\252\346\225\260\357\274\232</span></p></body></html>", 0));
         radioButton->setText(QApplication::translate("LineCameraClass", "\347\233\270\346\234\272\345\255\230\345\233\276", 0));
         label_7->setText(QApplication::translate("LineCameraClass", "device", 0));
-        pushButton_4->setText(QApplication::translate("LineCameraClass", "show", 0));
         pushButton_3->setText(QApplication::translate("LineCameraClass", "\345\201\234\346\255\242\346\243\200\346\265\213", 0));
-        pushButton_5->setText(QApplication::translate("LineCameraClass", "link", 0));
-        pushButton_2->setText(QApplication::translate("LineCameraClass", "\346\232\202\345\201\234", 0));
         pushButton_6->setText(QApplication::translate("LineCameraClass", "\347\256\227\346\263\225\350\256\276\345\256\232", 0));
         pushButton_7->setText(QApplication::translate("LineCameraClass", "\350\277\220\345\212\250\350\256\276\345\256\232", 0));
-        pushButton_8->setText(QApplication::translate("LineCameraClass", "Login", 0));
         pushButton_9->setText(QApplication::translate("LineCameraClass", "\350\256\276\345\244\207\346\243\200\346\265\213", 0));
         pushButton->setText(QApplication::translate("LineCameraClass", "\345\220\257\345\212\250\346\243\200\346\265\213", 0));
+        pushButton_8->setText(QApplication::translate("LineCameraClass", "\347\231\273\345\275\225", 0));
         label_10->setText(QApplication::translate("LineCameraClass", "  \351\242\227\347\262\222\347\211\251\346\235\202\350\264\250\345\205\211\345\255\246\346\243\200\346\237\245\346\234\272", 0));
         label_11->setText(QApplication::translate("LineCameraClass", "                      \344\270\212\346\265\267\350\277\210\350\277\205\345\250\201\350\247\206\350\247\211\347\247\221\346\212\200\346\234\211\351\231\220\345\205\254\345\217\270", 0));
         label->setText(QString());

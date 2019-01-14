@@ -20,6 +20,7 @@
 #include <QMenu>
 #include <QCursor>
 #define NAME_LENGTH  30
+#pragma comment(lib,"DMC2210.lib") //º”»Î¡¥Ω”ø‚
 using namespace HalconCpp;
 
 static int numxfer;
@@ -40,7 +41,7 @@ public:
 	HalconCpp::HObject errorimage;
 	queue <HalconCpp::HObject> imagelist;
 	
-	long errorx = 0, errory = 0;
+	
 	int thesameerror = 0;
 	bool isshow = true;
 	void processimage();
@@ -119,6 +120,7 @@ public:
 	void modelSelect();
 	void modelOnce();
 	void modelTest();
+	void motionback();
 	//void contextMenuEvent(QContextMenuEvent *);
 private:
 	Ui::LineCameraClass ui;

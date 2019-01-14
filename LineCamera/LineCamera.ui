@@ -38,7 +38,7 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_5">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0,0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0">
        <property name="spacing">
         <number>5</number>
        </property>
@@ -96,29 +96,22 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;上限x：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="lineEdit_4"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;下限y:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="lineEdit_3"/>
+        </spacer>
        </item>
        <item>
         <widget class="QLabel" name="label_6">
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;测量值：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;测量个数：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
@@ -152,31 +145,10 @@
        <property name="leftMargin">
         <number>0</number>
        </property>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="pushButton_4">
-         <property name="text">
-          <string>show</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="2">
         <widget class="QPushButton" name="pushButton_3">
          <property name="text">
           <string>停止检测</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="pushButton_5">
-         <property name="text">
-          <string>link</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QPushButton" name="pushButton_2">
-         <property name="text">
-          <string>暂停</string>
          </property>
         </widget>
        </item>
@@ -194,13 +166,6 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="pushButton_8">
-         <property name="text">
-          <string>Login</string>
-         </property>
-        </widget>
-       </item>
        <item row="2" column="2">
         <widget class="QPushButton" name="pushButton_9">
          <property name="text">
@@ -212,6 +177,13 @@
         <widget class="QPushButton" name="pushButton">
          <property name="text">
           <string>启动检测</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="pushButton_8">
+         <property name="text">
+          <string>登录</string>
          </property>
         </widget>
        </item>
@@ -300,16 +272,10 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
-  <tabstop>lineEdit_4</tabstop>
-  <tabstop>lineEdit_3</tabstop>
   <tabstop>lineEdit_2</tabstop>
   <tabstop>lineEdit</tabstop>
   <tabstop>pushButton</tabstop>
-  <tabstop>pushButton_2</tabstop>
   <tabstop>pushButton_3</tabstop>
-  <tabstop>pushButton_4</tabstop>
-  <tabstop>pushButton_5</tabstop>
-  <tabstop>pushButton_8</tabstop>
   <tabstop>pushButton_6</tabstop>
   <tabstop>pushButton_7</tabstop>
   <tabstop>pushButton_9</tabstop>
@@ -318,22 +284,6 @@
   <include location="LineCamera.qrc"/>
  </resources>
  <connections>
-  <connection>
-   <sender>pushButton_4</sender>
-   <signal>clicked()</signal>
-   <receiver>LineCameraClass</receiver>
-   <slot>showimage()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>32</x>
-     <y>666</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>484</x>
-     <y>346</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>pushButton</sender>
    <signal>clicked()</signal>
@@ -351,22 +301,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_2</sender>
-   <signal>clicked()</signal>
-   <receiver>LineCameraClass</receiver>
-   <slot>btnstop()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>880</x>
-     <y>629</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>377</x>
-     <y>248</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>pushButton_3</sender>
    <signal>clicked()</signal>
    <receiver>LineCameraClass</receiver>
@@ -379,22 +313,6 @@
     <hint type="destinationlabel">
      <x>495</x>
      <y>247</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_5</sender>
-   <signal>clicked()</signal>
-   <receiver>LineCameraClass</receiver>
-   <slot>linkdevice()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>880</x>
-     <y>666</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>320</x>
-     <y>357</y>
     </hint>
    </hints>
   </connection>
@@ -459,38 +377,6 @@
     <hint type="destinationlabel">
      <x>598</x>
      <y>499</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>lineEdit_4</sender>
-   <signal>editingFinished()</signal>
-   <receiver>LineCameraClass</receiver>
-   <slot>geta()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>412</x>
-     <y>549</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>89</x>
-     <y>281</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>lineEdit_3</sender>
-   <signal>editingFinished()</signal>
-   <receiver>LineCameraClass</receiver>
-   <slot>getb()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>746</x>
-     <y>574</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>247</x>
-     <y>277</y>
     </hint>
    </hints>
   </connection>

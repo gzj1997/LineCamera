@@ -6,8 +6,8 @@ public :
 	 static  const unsigned short cardNo = 0;
 	 static  const unsigned short Axis0 = 0;
 	 static  const unsigned short Axis1 = 1;
-	 static  const unsigned short greenLed = 10;
-	 static  const unsigned short redLed = 9;
+	 static  const unsigned short greenLed = 2;
+	 static  const unsigned short redLed = 3;
 	 static  const unsigned short shakePan = 10;
 	 static  const unsigned short On = 0;
 	 static  const unsigned short Off = 1;

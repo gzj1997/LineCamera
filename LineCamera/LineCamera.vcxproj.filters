@@ -51,6 +51,9 @@
     <ClCompile Include="Pathhelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="nut.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="LineCamera.h">
@@ -110,5 +113,20 @@
     <ClInclude Include="filehelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="nut.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DMC2210.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="LineCamera.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="C:\Users\mxw\Desktop\公司LOG.ico" />
   </ItemGroup>
 </Project>

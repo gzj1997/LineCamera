@@ -1,8 +1,6 @@
 #include "LineCamera.h"
 #include <QtWidgets/QApplication>
 #include"helper.h"
-#include"DMC2210.h"
-
  //LineCamera *call_show;
 
 
